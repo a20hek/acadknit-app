@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "incept",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\Abhishek\\Documents\\Incept\\amplify\\backend\\api\\incept\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authinceptbdf786ca"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}

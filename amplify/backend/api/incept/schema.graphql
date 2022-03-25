@@ -1,0 +1,36 @@
+# # This "input" configures a global authorization rule to enable public access to
+# # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+# input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type User @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  name: String
+  college: String
+  degree: String
+  email: String
+  year: Int
+  interests: [Interest] @hasMany
+  messages: [Message] @hasMany
+  joinedClubs: [Club] @manyToMany(relationName: "UserClubs")
+}
+
+type Interest @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  interestName: String
+  user: User @belongsTo
+}
+
+type Club @model @auth(rules: [{allow: owner}]) {
+  id: ID
+  clubName: String
+  clubDesc: String
+  joinedUsers: [User] @manyToMany(relationName: "UserClubs")
+  messages: [Message] @hasMany
+}
+
+type Message @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  content: String
+  author: User
+  club: Club @belongsTo
+}

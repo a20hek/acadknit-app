@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-incept-dev-214334-authRole",
+      "UnauthRoleArn": "arn:aws:iam::474130139348:role/amplify-incept-dev-214334-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::474130139348:role/amplify-incept-dev-214334-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-incept-dev-214334-deployment",
+      "UnauthRoleName": "amplify-incept-dev-214334-unauthRole",
+      "StackName": "amplify-incept-dev-214334",
+      "StackId": "arn:aws:cloudformation:ap-south-1:474130139348:stack/amplify-incept-dev-214334/8ff10540-997a-11ec-a372-0ad2fd40ee32",
+      "AmplifyAppId": "d3qzhml88wak50"
+    },
+    "categories": {
+      "auth": {
+        "inceptbdf786ca": {}
+      }
+    }
+  }
+}
