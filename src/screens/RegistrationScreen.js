@@ -7,6 +7,8 @@ import {
   Text,
   Select,
   CheckIcon,
+  Heading,
+  AddIcon,
 } from 'native-base';
 import React, {useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
@@ -23,18 +25,19 @@ export default function RegistrationScreen({navigation}) {
       name: '',
       email: '',
       password: '',
+      college: '',
     },
   });
 
   const onRegisterPressed = async data => {
-    const {email, password, name} = data;
+    const {email, password, name, college} = data;
     try {
       await Auth.signUp({
         username: email,
         password,
         attributes: {email, name},
       });
-      navigation.navigate('Confirm Email', {email, name, password});
+      navigation.navigate('Confirm Email', {email, name, password, college});
     } catch (e) {
       Alert.alert(e.message);
     }
@@ -42,6 +45,9 @@ export default function RegistrationScreen({navigation}) {
 
   return (
     <Box flex={1} bg="#fff" alignItems="center">
+      <Heading fontWeight="500" mt="5%">
+        Create Account
+      </Heading>
       <VStack width="80%">
         <FormControl>
           <FormControl.Label mt="15px" mb="-0.5px">
@@ -63,6 +69,7 @@ export default function RegistrationScreen({navigation}) {
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
+                variant="underlined"
               />
             )}
             name="name"
@@ -94,6 +101,7 @@ export default function RegistrationScreen({navigation}) {
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
+                variant="underlined"
               />
             )}
             name="email"
@@ -125,6 +133,7 @@ export default function RegistrationScreen({navigation}) {
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
+                variant="underlined"
               />
             )}
             name="password"
@@ -135,6 +144,49 @@ export default function RegistrationScreen({navigation}) {
             </Text>
           )}
         </FormControl>
+
+        <FormControl>
+          <FormControl.Label mt="15px" mb="-0.5px">
+            College
+          </FormControl.Label>
+          <Controller
+            control={control}
+            rules={{
+              required: 'College is required',
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Select
+                onBlur={onBlur}
+                onValueChange={val => onChange(val)}
+                selectedValue={value}
+                placeholder="Zugzwang College of Endgame"
+                variant="underlined"
+                size="lg"
+                _selectedItem={{
+                  bg: 'teal.600',
+                  endIcon: <CheckIcon size={5} />,
+                }}
+                mt="1">
+                <Select.Item label="Pillai College" value="Pillai College" />
+              </Select>
+            )}
+            name="college"
+          />
+          {errors.college && (
+            <Text color="red.500" fontWeight="light" fontSize="12px">
+              {errors.college.message}
+            </Text>
+          )}
+        </FormControl>
+        {/* <Button
+          size="sm"
+          leftIcon={<AddIcon size="12px" />}
+          variant="outline"
+          w="100px"
+          mt="24px">
+          Add Interest
+        </Button> */}
+
         <Button
           bg="#00B633"
           _text={{fontSize: 18, color: '#fff'}}

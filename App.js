@@ -45,6 +45,8 @@ import FeedIcon from './components/FeedIcon';
 import FriendsIcon from './components/FriendsIcon';
 import ProfileIcon from './components/ProfileIcon';
 
+import AddClubScreen from './src/screens/AddClubScreen';
+
 Amplify.configure({
   ...awsconfig,
   Analytics: {
@@ -54,6 +56,20 @@ Amplify.configure({
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Home"
+        component={HomeScreen}
+        // options={{headerShown: false}}
+      />
+      <HomeStack.Screen name="Add Club" component={AddClubScreen} />
+    </HomeStack.Navigator>
+  );
+}
 
 function TabNavigator() {
   return (
@@ -61,7 +77,7 @@ function TabNavigator() {
       initialRouteName="Home"
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => {
-          if (route.name === 'Home') return <HomeIcon color={color} />;
+          if (route.name === 'HomeTab') return <HomeIcon color={color} />;
           else if (route.name === 'Friends')
             return <FriendsIcon color={color} />;
           else if (route.name === 'Feed') return <FeedIcon color={color} />;
@@ -72,7 +88,11 @@ function TabNavigator() {
         tabBarInactiveTintColor: '#8c8c8c',
         tabBarShowLabel: false,
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeStackScreen}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Friends" component={FriendsScreen} />
       <Tab.Screen name="Feed" component={FeedScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

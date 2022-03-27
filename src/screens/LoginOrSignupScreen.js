@@ -11,7 +11,9 @@ export default function LoginOrSignupScreen({navigation}) {
         <BlackLogo />
       </Box>
       <Box alignItems="center" width="80%" mt="20%">
-        <Text>Sign Up or Log In to continue</Text>
+        <Text font="WorkSans-Medium" fontWeight="500" color="#808080">
+          Sign Up or Log In to continue
+        </Text>
         <Button
           onPress={() => navigation.navigate('Register')}
           variant="subtle"
@@ -21,15 +23,18 @@ export default function LoginOrSignupScreen({navigation}) {
           width="90%"
           height="48px"
           borderRadius="10px"
-          my="12px">
+          my="12px"
+          mt="10%">
           Register
         </Button>
         <Button
           onPress={() => navigation.navigate('Login')}
-          variant="ghost"
+          variant="outline"
           _text={{fontWeight: 'bold', color: '#00B633'}}
           size="lg"
+          borderRadius="10px"
           my="12px"
+          borderColor="#00B633"
           width="90%">
           Log In
         </Button>

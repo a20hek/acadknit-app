@@ -1,10 +1,9 @@
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {useRoute} from '@react-navigation/native';
-import {Auth} from 'aws-amplify';
 import {Alert} from 'react-native';
 import {Box, Input, FormControl, VStack, Button} from 'native-base';
-import {API, graphqlOperation} from 'aws-amplify';
+import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {createUser} from '../graphql/mutations';
 
 export default function ConfirmEmailScreen({navigation}) {
@@ -19,25 +18,29 @@ export default function ConfirmEmailScreen({navigation}) {
       username: route?.params?.email,
       password: route?.params?.password,
       name: route?.params?.name,
+      college: route?.params?.college,
     },
   });
 
   const username = watch('username');
 
   const onConfirmPressed = async data => {
+    await Auth.confirmSignUp(data.username, data.code);
     try {
-      await Auth.confirmSignUp(data.username, data.code);
+      await Auth.signIn(data.username, data.password);
+      const currentUser = await Auth.currentAuthenticatedUser();
+      const userId = currentUser.signInUserSession.accessToken.payload.sub;
       try {
-        await Auth.signIn(data.username, data.password);
-        try {
-          await API.graphql(
-            graphqlOperation(createUser, {
-              input: {email: data.username, name: data.name},
-            }),
-          );
-        } catch (e) {
-          Alert.alert(e.message);
-        }
+        await API.graphql(
+          graphqlOperation(createUser, {
+            input: {
+              id: userId,
+              email: data.username,
+              name: data.name,
+              college: data.college,
+            },
+          }),
+        );
       } catch (e) {
         Alert.alert(e.message);
       }

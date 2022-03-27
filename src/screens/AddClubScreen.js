@@ -9,10 +9,8 @@ import {
 } from 'native-base';
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
-import {Auth} from 'aws-amplify';
-import {Alert} from 'react-native';
 
-export default function LoginScreen({navigation}) {
+export default function AddClubScreen({navigation}) {
   const {
     control,
     handleSubmit,
@@ -24,21 +22,10 @@ export default function LoginScreen({navigation}) {
     },
   });
 
-  const onSignInPressed = async data => {
-    try {
-      const response = await Auth.signIn(data.email, data.password);
-    } catch (e) {
-      Alert.alert(e.message);
-    }
-  };
-
   return (
-    <Box flex={1} bg="#fff" alignItems="center">
-      <Heading fontWeight="500" mt="5%">
-        Log In
-      </Heading>
+    <Box bg="#fff" flex={1}>
       <VStack width="80%">
-        <FormControl>
+        {/* <FormControl>
           <FormControl.Label mt="15px" mb="-0.5px">
             Email
           </FormControl.Label>
@@ -99,7 +86,7 @@ export default function LoginScreen({navigation}) {
           top="40%"
           onPress={handleSubmit(onSignInPressed)}>
           Log In
-        </Button>
+        </Button> */}
       </VStack>
     </Box>
   );
