@@ -4,38 +4,25 @@ import {
   HStack,
   Center,
   Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Code,
+  Input,
   Flex,
-  Image,
   Box,
   Button,
-  FlatList,
-  Container,
-  Divider,
-  Input,
 } from 'native-base';
 import React, {useEffect, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
-// import {StreamChat} from 'stream-chat';
-// import {OverlayProvider} from 'stream-chat-react-native';
 import {Alert} from 'react-native';
-import {getUser} from '../graphql/queries';
-
-// const API_KEY = '6m2jd92u2puu';
-// const Client = StreamChat.getInstance(API_KEY);
+import {getUser, getClub} from '../graphql/queries';
 
 export default function HomeScreen({navigation}) {
   const [userData, setUserData] = useState([]);
+  const [clubData, setClubData] = useState([]);
 
   useEffect(() => {
     getUserData();
+    // getClubData();
   }, []);
 
   const getUserData = async () => {
@@ -45,12 +32,20 @@ export default function HomeScreen({navigation}) {
         graphqlOperation(getUser, {id: currentUser.attributes.sub}),
       );
       const currentUserInfo = currentUserData.data.getUser;
-      // Alert.alert(currentUserInfo);
+
+      // const joinedClubData = await API.graphql(
+      //   graphqlOperation(getClub, {userID: currentUser.attributes.sub}),
+      // );
+
+      // const currentUserClubInfo = joinedClubData.data.getClub;
+
       if (currentUser) {
         setUserData(currentUserInfo);
+        console.log(userData.joinedClubs);
+        // setClubData(currentUserClubInfo);
       }
     } catch (e) {
-      console.log(e.message);
+      Alert.alert(e.message);
     }
   };
 
@@ -65,7 +60,7 @@ export default function HomeScreen({navigation}) {
         padding="0"
         margin="8px"
         borderStyle="dashed"
-        onPress={() => navigation.navigate('Add Club')}
+        onPress={() => navigation.navigate('Add Club', {userData})}
         bg="#fff"
         _pressed={{background: '#fff'}}>
         <Flex flexDir="column">
@@ -81,55 +76,18 @@ export default function HomeScreen({navigation}) {
       </Button>
     );
   };
-  // const [sub, setSub] = useState(null);
-  // const [name, setName] = useState(null);
-
-  // const fetchAuthorizedUser = async () => {
-  //   try {
-  //     const authUser = await Auth.currentAuthenticatedUser();
-  //     const attributes = await Auth.userAttributes(authUser);
-  //     const user = {
-  //       sub: findAttributeInList(attributes, 'sub'),
-  //       name: findAttributeInList(attributes, 'name'),
-  //     };
-  //     setSub(user.sub);
-  //     setName(user.name);
-  //   } catch (err) {
-  //     Alert.alert(err.message);
-  //   }
-  // };
-
-  // const ConUser = async (sub, name) => {
-  //   try {
-  //     await Client.connectUser(
-  //       {
-  //         id: sub,
-  //         name: name,
-  //       },
-  //       Client.devToken(sub),
-  //     );
-  //   } catch (err) {
-  //     Alert.alert(err.message);
-  //   }
-  // };
-
-  // const findAttributeInList = (list, attr) =>
-  //   list
-  //     .filter(e => e.Name === attr)
-  //     .map(e => e.Value)
-  //     .find(e => e);
-
-  // useEffect(() => {
-  //   fetchAuthorizedUser();
-  //   if (sub != null) {
-  //     ConUser(sub, name);
-  //   }
-  // }, []);
 
   const signOut = () => {
     Auth.signOut();
-    // Client.disconnectUser();
   };
+
+  async function getClubData(item) {
+    const joinedClubData = await API.graphql(
+      graphqlOperation(getClub, {id: item}),
+    );
+    return <Text>{joinedClubData?.data?.getClub?.clubName}</Text>;
+  }
+
   return (
     <>
       {userData && (
@@ -137,9 +95,20 @@ export default function HomeScreen({navigation}) {
           <Text fontSize="16px" ml="8px" mt="8px">
             Hello, {userData.name} from {userData.college}
           </Text>
+          <Center>
+            <Input
+              type="search"
+              w="90%"
+              h="32px"
+              placeholder="Search for clubs"
+            />
+          </Center>
           <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
-            <ClubCard name="Random" imgUrl="https://picsum.photos/176/154" />
-            <ClubCard name="Hello" imgUrl="https://picsum.photos/176/154" />
+            {/* <ClubCard name="Random" />
+            <ClubCard name="Hello" /> */}
+            {userData?.joinedClubs?.items?.map(
+              item => item && getClubData(item.clubID),
+            )}
             <AddClub />
           </Flex>
           <Center>
