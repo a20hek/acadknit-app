@@ -1,6 +1,6 @@
 type User @model @auth(rules: [{allow: owner}]) {
-  id: ID! @index
-  name: String @
+  id: ID!
+  name: String
   college: String
   degree: String
   email: String
@@ -10,31 +10,38 @@ type User @model @auth(rules: [{allow: owner}]) {
   joinedClubs: [Club] @manyToMany(relationName: "UserClubs")
 }
 
-type Interest @model @auth(rules: [{allow: public}]) {
+type Interest @model @auth(rules: [{allow: owner}]) {
   id: ID!
   interestName: String
   user: User @belongsTo
 }
 
-type Club @model @auth(rules: [{allow: public}]) {
+type Club @model @auth(rules: [{allow: owner}]) {
   id: ID
   clubName: String
   clubDesc: String
   joinedUsers: [User] @manyToMany(relationName: "UserClubs")
-  messages: [Message] @hasMany(indexName: "byClub", fields: [id])
+  messages: [Message] @hasMany(indexName: "byClub", fields: ["id"])
 }
 
-type Message @model @auth(rules: [{allow: public}]) {
+type Message @model @auth(rules: [{allow: owner}]) {
   id: ID!
   content: String
   author: User
+  clubID: ID! @index(name: "byClub", sortKeyFields: ["createdAt"])
   club: Club @belongsTo
-  createdAt:String
+  createdAt: String
 }
 
 type Announcement @model @auth(rules: [{allow: public}]) {
-  id:ID!
-  author:String
-  content:String
-  createdAt:String
+  id: ID!
+  author: String
+  content: String
+  createdAt: String
+}
+
+type Invite @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  userID: ID!
+  user: User
 }

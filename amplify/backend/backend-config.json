@@ -40,7 +40,16 @@
               "userPoolId": "authinceptbdf786ca"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "description": "acadknit_secret",
+                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDate": "2022-04-13T09:23:01.410Z"
+              }
+            }
+          ]
         }
       }
     }

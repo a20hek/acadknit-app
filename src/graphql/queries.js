@@ -17,6 +17,7 @@ export const getUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -24,10 +25,11 @@ export const getUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -38,11 +40,13 @@ export const getUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -71,6 +75,7 @@ export const listUsers = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -99,10 +104,12 @@ export const getInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
@@ -125,10 +132,12 @@ export const listInterests = /* GraphQL */ `
           year
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
         userInterestsId
+        owner
       }
       nextToken
     }
@@ -147,6 +156,7 @@ export const getClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -154,15 +164,17 @@ export const getClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -185,6 +197,7 @@ export const listClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -213,7 +226,9 @@ export const getMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -226,11 +241,12 @@ export const getMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
     }
   }
 `;
@@ -253,18 +269,81 @@ export const listMessages = /* GraphQL */ `
           year
           createdAt
           updatedAt
+          owner
         }
+        clubID
         club {
           id
           clubName
           clubDesc
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
         userMessagesId
-        clubMessagesId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getInvite = /* GraphQL */ `
+  query GetInvite($id: ID!) {
+    getInvite(id: $id) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listInvites = /* GraphQL */ `
+  query ListInvites(
+    $filter: ModelInviteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInvites(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        user {
+          id
+          name
+          college
+          degree
+          email
+          year
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }
@@ -294,6 +373,7 @@ export const getUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -307,9 +387,11 @@ export const getUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -333,6 +415,7 @@ export const listUserClubs = /* GraphQL */ `
           year
           createdAt
           updatedAt
+          owner
         }
         club {
           id
@@ -340,7 +423,38 @@ export const listUserClubs = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
+          owner
         }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getAnnouncement = /* GraphQL */ `
+  query GetAnnouncement($id: ID!) {
+    getAnnouncement(id: $id) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAnnouncements = /* GraphQL */ `
+  query ListAnnouncements(
+    $filter: ModelAnnouncementFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAnnouncements(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        author
+        content
         createdAt
         updatedAt
       }

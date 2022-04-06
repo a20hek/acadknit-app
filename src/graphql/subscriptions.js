@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
       id
       name
       college
@@ -17,6 +17,7 @@ export const onCreateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -24,10 +25,11 @@ export const onCreateUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -38,17 +40,19 @@ export const onCreateUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
       id
       name
       college
@@ -62,6 +66,7 @@ export const onUpdateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -69,10 +74,11 @@ export const onUpdateUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -83,17 +89,19 @@ export const onUpdateUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
       id
       name
       college
@@ -107,6 +115,7 @@ export const onDeleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -114,10 +123,11 @@ export const onDeleteUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -128,17 +138,19 @@ export const onDeleteUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onCreateInterest = /* GraphQL */ `
-  subscription OnCreateInterest {
-    onCreateInterest {
+  subscription OnCreateInterest($owner: String) {
+    onCreateInterest(owner: $owner) {
       id
       interestName
       user {
@@ -159,16 +171,18 @@ export const onCreateInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
 export const onUpdateInterest = /* GraphQL */ `
-  subscription OnUpdateInterest {
-    onUpdateInterest {
+  subscription OnUpdateInterest($owner: String) {
+    onUpdateInterest(owner: $owner) {
       id
       interestName
       user {
@@ -189,16 +203,18 @@ export const onUpdateInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
 export const onDeleteInterest = /* GraphQL */ `
-  subscription OnDeleteInterest {
-    onDeleteInterest {
+  subscription OnDeleteInterest($owner: String) {
+    onDeleteInterest(owner: $owner) {
       id
       interestName
       user {
@@ -219,16 +235,18 @@ export const onDeleteInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
 export const onCreateClub = /* GraphQL */ `
-  subscription OnCreateClub {
-    onCreateClub {
+  subscription OnCreateClub($owner: String) {
+    onCreateClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -239,6 +257,7 @@ export const onCreateClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -246,21 +265,23 @@ export const onCreateClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateClub = /* GraphQL */ `
-  subscription OnUpdateClub {
-    onUpdateClub {
+  subscription OnUpdateClub($owner: String) {
+    onUpdateClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -271,6 +292,7 @@ export const onUpdateClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -278,21 +300,23 @@ export const onUpdateClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteClub = /* GraphQL */ `
-  subscription OnDeleteClub {
-    onDeleteClub {
+  subscription OnDeleteClub($owner: String) {
+    onDeleteClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -303,6 +327,7 @@ export const onDeleteClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -310,21 +335,23 @@ export const onDeleteClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage {
-    onCreateMessage {
+  subscription OnCreateMessage($owner: String) {
+    onCreateMessage(owner: $owner) {
       id
       content
       author {
@@ -345,7 +372,9 @@ export const onCreateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -358,17 +387,18 @@ export const onCreateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
     }
   }
 `;
 export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage {
-    onUpdateMessage {
+  subscription OnUpdateMessage($owner: String) {
+    onUpdateMessage(owner: $owner) {
       id
       content
       author {
@@ -389,7 +419,9 @@ export const onUpdateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -402,17 +434,18 @@ export const onUpdateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
     }
   }
 `;
 export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage {
-    onDeleteMessage {
+  subscription OnDeleteMessage($owner: String) {
+    onDeleteMessage(owner: $owner) {
       id
       content
       author {
@@ -433,7 +466,9 @@ export const onDeleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -446,17 +481,111 @@ export const onDeleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
+    }
+  }
+`;
+export const onCreateInvite = /* GraphQL */ `
+  subscription OnCreateInvite($owner: String) {
+    onCreateInvite(owner: $owner) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateInvite = /* GraphQL */ `
+  subscription OnUpdateInvite($owner: String) {
+    onUpdateInvite(owner: $owner) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteInvite = /* GraphQL */ `
+  subscription OnDeleteInvite($owner: String) {
+    onDeleteInvite(owner: $owner) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
 export const onCreateUserClubs = /* GraphQL */ `
-  subscription OnCreateUserClubs {
-    onCreateUserClubs {
+  subscription OnCreateUserClubs($owner: String) {
+    onCreateUserClubs(owner: $owner) {
       id
       userID
       clubID
@@ -478,6 +607,7 @@ export const onCreateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -491,15 +621,17 @@ export const onCreateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateUserClubs = /* GraphQL */ `
-  subscription OnUpdateUserClubs {
-    onUpdateUserClubs {
+  subscription OnUpdateUserClubs($owner: String) {
+    onUpdateUserClubs(owner: $owner) {
       id
       userID
       clubID
@@ -521,6 +653,7 @@ export const onUpdateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -534,50 +667,88 @@ export const onUpdateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUserClubs = /* GraphQL */ `
+  subscription OnDeleteUserClubs($owner: String) {
+    onDeleteUserClubs(owner: $owner) {
+      id
+      userID
+      clubID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      club {
+        id
+        clubName
+        clubDesc
+        joinedUsers {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateAnnouncement = /* GraphQL */ `
+  subscription OnCreateAnnouncement {
+    onCreateAnnouncement {
+      id
+      author
+      content
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteUserClubs = /* GraphQL */ `
-  subscription OnDeleteUserClubs {
-    onDeleteUserClubs {
+export const onUpdateAnnouncement = /* GraphQL */ `
+  subscription OnUpdateAnnouncement {
+    onUpdateAnnouncement {
       id
-      userID
-      clubID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      club {
-        id
-        clubName
-        clubDesc
-        joinedUsers {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
+      author
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteAnnouncement = /* GraphQL */ `
+  subscription OnDeleteAnnouncement {
+    onDeleteAnnouncement {
+      id
+      author
+      content
       createdAt
       updatedAt
     }

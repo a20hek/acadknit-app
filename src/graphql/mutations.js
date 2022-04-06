@@ -20,6 +20,7 @@ export const createUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -27,10 +28,11 @@ export const createUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -41,11 +43,13 @@ export const createUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -68,6 +72,7 @@ export const updateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -75,10 +80,11 @@ export const updateUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -89,11 +95,13 @@ export const updateUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -116,6 +124,7 @@ export const deleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userInterestsId
+          owner
         }
         nextToken
       }
@@ -123,10 +132,11 @@ export const deleteUser = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
@@ -137,11 +147,13 @@ export const deleteUser = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -171,10 +183,12 @@ export const createInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
@@ -204,10 +218,12 @@ export const updateInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
@@ -237,10 +253,12 @@ export const deleteInterest = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userInterestsId
+      owner
     }
   }
 `;
@@ -260,6 +278,7 @@ export const createClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -267,15 +286,17 @@ export const createClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -295,6 +316,7 @@ export const updateClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -302,15 +324,17 @@ export const updateClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -330,6 +354,7 @@ export const deleteClub = /* GraphQL */ `
           clubID
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
@@ -337,15 +362,17 @@ export const deleteClub = /* GraphQL */ `
         items {
           id
           content
+          clubID
           createdAt
           updatedAt
           userMessagesId
-          clubMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -375,7 +402,9 @@ export const createMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -388,11 +417,12 @@ export const createMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
     }
   }
 `;
@@ -422,7 +452,9 @@ export const updateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -435,11 +467,12 @@ export const updateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
     }
   }
 `;
@@ -469,7 +502,9 @@ export const deleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      clubID
       club {
         id
         clubName
@@ -482,11 +517,114 @@ export const deleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      clubMessagesId
+      owner
+    }
+  }
+`;
+export const createInvite = /* GraphQL */ `
+  mutation CreateInvite(
+    $input: CreateInviteInput!
+    $condition: ModelInviteConditionInput
+  ) {
+    createInvite(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateInvite = /* GraphQL */ `
+  mutation UpdateInvite(
+    $input: UpdateInviteInput!
+    $condition: ModelInviteConditionInput
+  ) {
+    updateInvite(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteInvite = /* GraphQL */ `
+  mutation DeleteInvite(
+    $input: DeleteInviteInput!
+    $condition: ModelInviteConditionInput
+  ) {
+    deleteInvite(input: $input, condition: $condition) {
+      id
+      userID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -517,6 +655,7 @@ export const createUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -530,9 +669,11 @@ export const createUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -563,6 +704,7 @@ export const updateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -576,9 +718,11 @@ export const updateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -609,6 +753,7 @@ export const deleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       club {
         id
@@ -622,7 +767,51 @@ export const deleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createAnnouncement = /* GraphQL */ `
+  mutation CreateAnnouncement(
+    $input: CreateAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    createAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAnnouncement = /* GraphQL */ `
+  mutation UpdateAnnouncement(
+    $input: UpdateAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    updateAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAnnouncement = /* GraphQL */ `
+  mutation DeleteAnnouncement(
+    $input: DeleteAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    deleteAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
       createdAt
       updatedAt
     }

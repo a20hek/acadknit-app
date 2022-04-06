@@ -106,9 +106,9 @@ export default function HomeScreen({navigation}) {
           <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
             {/* <ClubCard name="Random" />
             <ClubCard name="Hello" /> */}
-            {userData?.joinedClubs?.items?.map(
+            {/* {userData?.joinedClubs?.items?.map(
               item => item && getClubData(item.clubID),
-            )}
+            )} */}
             <AddClub />
           </Flex>
           <Center>
