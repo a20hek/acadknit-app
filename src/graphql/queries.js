@@ -38,6 +38,10 @@ export const getUser = /* GraphQL */ `
           id
           userID
           clubID
+          club {
+            clubDesc
+            clubName
+          }
           createdAt
           updatedAt
           owner

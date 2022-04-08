@@ -44,34 +44,11 @@ export default function AddClubScreen({navigation}) {
           },
         }),
       );
+      navigation.navigate('Home');
     } catch (e) {
       Alert.alert(e.message);
     }
   };
-
-  //   try {
-  //     await API.graphql(
-  //       graphqlOperation(createClub, {
-  //         input: {
-  //           clubName: clubName,
-  //           clubDesc: clubDesc,
-  //           // joinedUsers: {items: {userID: route?.params?.userData.id}},
-  //         },
-  //       }),
-  //     );
-  //   } catch (e) {
-  //     Alert.alert(e.message);
-  //   }
-  // };
-
-  // const clubData=await API.graphql(graphqlOperation(
-  //   createClub,{
-  //     input:'hello'
-  //   }
-  // ))
-
-  // const newClub= clubData.data.createClub;
-  // await API.graphql(graphqlOperation(createUserClubs,{input:'hello'}))
 
   return (
     <Box bg="#fff" flex={1} alignItems="center">

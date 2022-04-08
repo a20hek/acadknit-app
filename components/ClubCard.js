@@ -1,30 +1,39 @@
-import {Box, Text, Flex, Image} from 'native-base';
+import {Box, Text, Flex, Image, Button} from 'native-base';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ClubCard({name, imgUrl}) {
+  const navigation = useNavigation();
   return (
-    <Box
+    <Button
       borderWidth="0.2px"
       borderColor="#666666"
       height="196px"
       w="176px"
       borderRadius="6px"
-      padding="0"
-      margin="8px">
+      padding="0px"
+      margin="8px"
+      bg="#fff"
+      _pressed={{background: '#fff'}}
+      onPress={() =>
+        navigation.navigate('ClubChat', {
+          name: name,
+        })
+      }>
       <Flex flexDir="column">
         <Image
           borderTopRadius="6px"
           h="154px"
-          w="100%"
+          w="176px"
           source={{uri: 'https://picsum.photos/176/154'}}
           alt="Alternate Text"
         />
         <Box p="8px">
-          <Text fontWeight="medium" fontSize="16px">
+          <Text fontWeight="medium" fontSize="16px" w="100%">
             {name}
           </Text>
         </Box>
       </Flex>
-    </Box>
+    </Button>
   );
 }

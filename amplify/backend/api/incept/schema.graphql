@@ -1,5 +1,5 @@
 type User @model @auth(rules: [{allow: owner}]) {
-  id: ID!
+  id: ID! @index(name: "byName", fields: ["name"])
   name: String
   college: String
   degree: String

@@ -8,6 +8,7 @@ import {
   Flex,
   Box,
   Button,
+  ScrollView,
 } from 'native-base';
 import React, {useEffect, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
@@ -22,7 +23,6 @@ export default function HomeScreen({navigation}) {
 
   useEffect(() => {
     getUserData();
-    // getClubData();
   }, []);
 
   const getUserData = async () => {
@@ -33,16 +33,10 @@ export default function HomeScreen({navigation}) {
       );
       const currentUserInfo = currentUserData.data.getUser;
 
-      // const joinedClubData = await API.graphql(
-      //   graphqlOperation(getClub, {userID: currentUser.attributes.sub}),
-      // );
-
-      // const currentUserClubInfo = joinedClubData.data.getClub;
-
       if (currentUser) {
         setUserData(currentUserInfo);
-        console.log(userData.joinedClubs);
-        // setClubData(currentUserClubInfo);
+        setClubData(currentUserInfo.joinedClubs?.items);
+        console.log(clubData);
       }
     } catch (e) {
       Alert.alert(e.message);
@@ -81,40 +75,39 @@ export default function HomeScreen({navigation}) {
     Auth.signOut();
   };
 
-  async function getClubData(item) {
-    const joinedClubData = await API.graphql(
-      graphqlOperation(getClub, {id: item}),
-    );
-    return <Text>{joinedClubData?.data?.getClub?.clubName}</Text>;
-  }
-
   return (
     <>
       {userData && (
-        <Box bg="#fff" flex={1}>
-          <Text fontSize="16px" ml="8px" mt="8px">
-            Hello, {userData.name} from {userData.college}
-          </Text>
-          <Center>
-            <Input
-              type="search"
-              w="90%"
-              h="32px"
-              placeholder="Search for clubs"
-            />
-          </Center>
-          <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
-            {/* <ClubCard name="Random" />
-            <ClubCard name="Hello" /> */}
-            {/* {userData?.joinedClubs?.items?.map(
-              item => item && getClubData(item.clubID),
-            )} */}
-            <AddClub />
-          </Flex>
-          <Center>
-            <Button onPress={signOut}>Sign Out</Button>
-          </Center>
-        </Box>
+        <ScrollView>
+          <Box bg="#fff" flex={1}>
+            <Text fontSize="16px" ml="8px" mt="8px">
+              Hello, {userData.name} from {userData.college}
+            </Text>
+            <Center>
+              <Input
+                type="search"
+                w="90%"
+                h="32px"
+                placeholder="Search for clubs"
+              />
+            </Center>
+            <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
+              {clubData &&
+                clubData.map(clubInfo => (
+                  <ClubCard
+                    key={clubInfo.clubID}
+                    clubID={clubInfo.clubID}
+                    name={clubInfo.club.clubName}
+                  />
+                ))}
+
+              <AddClub />
+            </Flex>
+            <Center>
+              <Button onPress={signOut}>Sign Out</Button>
+            </Center>
+          </Box>
+        </ScrollView>
       )}
     </>
   );

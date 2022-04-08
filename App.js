@@ -46,6 +46,7 @@ import FriendsIcon from './components/FriendsIcon';
 import ProfileIcon from './components/ProfileIcon';
 
 import AddClubScreen from './src/screens/AddClubScreen';
+import ClubChatScreen from './src/screens/ClubChatScreen';
 
 Amplify.configure({
   ...awsconfig,
@@ -65,6 +66,11 @@ function HomeStackScreen() {
         name="Home"
         component={HomeScreen}
         // options={{headerShown: false}}
+      />
+      <HomeStack.Screen
+        name="ClubChat"
+        component={ClubChatScreen}
+        options={({route}) => ({title: route.params.name})}
       />
       <HomeStack.Screen name="Add Club" component={AddClubScreen} />
     </HomeStack.Navigator>
