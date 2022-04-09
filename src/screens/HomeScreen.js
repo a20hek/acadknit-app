@@ -15,11 +15,12 @@ import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
-import {getUser, getClub} from '../graphql/queries';
+import {getUser, clubByclubName} from '../graphql/queries';
 
 export default function HomeScreen({navigation}) {
   const [userData, setUserData] = useState([]);
   const [clubData, setClubData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     getUserData();
@@ -75,6 +76,10 @@ export default function HomeScreen({navigation}) {
     Auth.signOut();
   };
 
+  const handleKeyPress = () => {
+    navigation.navigate('Club Search', {searchQuery});
+  };
+
   return (
     <>
       {userData && (
@@ -89,6 +94,11 @@ export default function HomeScreen({navigation}) {
                 w="90%"
                 h="32px"
                 placeholder="Search for clubs"
+                value={searchQuery}
+                onChangeText={text => setSearchQuery(text)}
+                // onKeyPress={handleKeyPress}
+                returnKeyType="go"
+                onSubmitEditing={handleKeyPress}
               />
             </Center>
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">

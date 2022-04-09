@@ -47,6 +47,7 @@ import ProfileIcon from './components/ProfileIcon';
 
 import AddClubScreen from './src/screens/AddClubScreen';
 import ClubChatScreen from './src/screens/ClubChatScreen';
+import ClubSearchScreen from './src/screens/ClubSearchScreen';
 
 Amplify.configure({
   ...awsconfig,
@@ -67,6 +68,7 @@ function HomeStackScreen() {
         component={HomeScreen}
         // options={{headerShown: false}}
       />
+      <HomeStack.Screen name="Club Search" component={ClubSearchScreen} />
       <HomeStack.Screen
         name="ClubChat"
         component={ClubChatScreen}

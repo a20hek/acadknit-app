@@ -1,10 +1,10 @@
 type User @model @auth(rules: [{allow: owner}]) {
-  id: ID! @index(name: "byName", fields: ["name"])
-  name: String
+  id: ID!
+  name: String @index(name: "byName", queryField: "userByName")
   college: String
-  degree: String
+  degree: String @index(name: "byDegree", queryField: "userByDegree")
   email: String
-  year: Int
+  year: Int @index(name: "byYear", queryField: "userByYear")
   interests: [Interest] @hasMany
   messages: [Message] @hasMany
   joinedClubs: [Club] @manyToMany(relationName: "UserClubs")
@@ -18,7 +18,7 @@ type Interest @model @auth(rules: [{allow: owner}]) {
 
 type Club @model @auth(rules: [{allow: owner}]) {
   id: ID
-  clubName: String
+  clubName: String @index(name: "byclubName", queryField: "clubByclubName")
   clubDesc: String
   joinedUsers: [User] @manyToMany(relationName: "UserClubs")
   messages: [Message] @hasMany(indexName: "byClub", fields: ["id"])
