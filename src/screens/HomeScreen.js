@@ -15,7 +15,8 @@ import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
-import {getUser, clubByclubName} from '../graphql/queries';
+import {getUser} from '../graphql/queries';
+import SearchInput from '../../components/SearchInput';
 
 export default function HomeScreen({navigation}) {
   const [userData, setUserData] = useState([]);
@@ -78,6 +79,7 @@ export default function HomeScreen({navigation}) {
 
   const handleKeyPress = () => {
     navigation.navigate('Club Search', {searchQuery});
+    setSearchQuery('');
   };
 
   return (
@@ -85,22 +87,16 @@ export default function HomeScreen({navigation}) {
       {userData && (
         <ScrollView>
           <Box bg="#fff" flex={1}>
-            <Text fontSize="16px" ml="8px" mt="8px">
-              Hello, {userData.name} from {userData.college}
-            </Text>
             <Center>
-              <Input
-                type="search"
-                w="90%"
-                h="32px"
-                placeholder="Search for clubs"
+              <SearchInput
                 value={searchQuery}
-                onChangeText={text => setSearchQuery(text)}
-                // onKeyPress={handleKeyPress}
-                returnKeyType="go"
                 onSubmitEditing={handleKeyPress}
+                onChangeText={text => setSearchQuery(text)}
               />
             </Center>
+            <Text fontSize="16px" ml="8px" mt="8px">
+              Good Morning, {userData.name}
+            </Text>
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
               {clubData &&
                 clubData.map(clubInfo => (

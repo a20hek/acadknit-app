@@ -7,6 +7,7 @@ import {
   Button,
   Text,
   Heading,
+  TextArea,
 } from 'native-base';
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
