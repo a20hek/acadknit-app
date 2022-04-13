@@ -92,9 +92,10 @@ export default function HomeScreen({navigation}) {
                 value={searchQuery}
                 onSubmitEditing={handleKeyPress}
                 onChangeText={text => setSearchQuery(text)}
+                placeholder="Search for Clubs"
               />
             </Center>
-            <Text fontSize="16px" ml="8px" mt="8px">
+            <Text fontSize="16px" ml="8px">
               Good Morning, {userData.name}
             </Text>
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">

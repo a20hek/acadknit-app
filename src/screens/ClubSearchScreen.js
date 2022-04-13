@@ -43,6 +43,7 @@ export default function ClubSearchScreen({navigation}) {
           value={input}
           onSubmitEditing={() => searchClubs(input)}
           onChangeText={text => setInput(text)}
+          placeholder="Search for clubs"
         />
       </Center>
       {clubInfo &&

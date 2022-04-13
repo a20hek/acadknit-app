@@ -2,7 +2,12 @@ import {Input} from 'native-base';
 import React from 'react';
 import {SearchIcon} from 'native-base';
 
-export default function SearchInput({value, onChangeText, onSubmitEditing}) {
+export default function SearchInput({
+  value,
+  onChangeText,
+  onSubmitEditing,
+  placeholder,
+}) {
   return (
     <Input
       InputLeftElement={<SearchIcon size="4" color="#7b7b7b" ml="8px" />}
@@ -13,7 +18,7 @@ export default function SearchInput({value, onChangeText, onSubmitEditing}) {
       w="90%"
       h="42px"
       fontSize="16px"
-      placeholder="Search for clubs"
+      placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
       returnKeyType="go"
