@@ -598,6 +598,7 @@ export const getAnnouncement = /* GraphQL */ `
     }
   }
 `;
+
 export const listAnnouncements = /* GraphQL */ `
   query ListAnnouncements(
     $filter: ModelAnnouncementFilterInput
