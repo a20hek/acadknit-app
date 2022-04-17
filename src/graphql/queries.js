@@ -103,7 +103,6 @@ export const getInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -117,12 +116,6 @@ export const listInterests = /* GraphQL */ `
       items {
         id
         interestName
-        users {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -274,6 +267,37 @@ export const listMessages = /* GraphQL */ `
     }
   }
 `;
+export const getAnnouncement = /* GraphQL */ `
+  query GetAnnouncement($id: ID!) {
+    getAnnouncement(id: $id) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listAnnouncements = /* GraphQL */ `
+  query ListAnnouncements(
+    $filter: ModelAnnouncementFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAnnouncements(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        author
+        content
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getInvite = /* GraphQL */ `
   query GetInvite($id: ID!) {
     getInvite(id: $id) {
@@ -368,7 +392,6 @@ export const getUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -403,7 +426,6 @@ export const listUserInterests = /* GraphQL */ `
           interestName
           createdAt
           updatedAt
-          owner
         }
         createdAt
         updatedAt
@@ -637,7 +659,6 @@ export const interestByInterestName = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -671,35 +692,6 @@ export const clubByName = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getAnnouncement = /* GraphQL */ `
-  query GetAnnouncement($id: ID!) {
-    getAnnouncement(id: $id) {
-      id
-      author
-      content
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listAnnouncements = /* GraphQL */ `
-  query ListAnnouncements(
-    $filter: ModelAnnouncementFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listAnnouncements(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        author
-        content
-        createdAt
-        updatedAt
       }
       nextToken
     }

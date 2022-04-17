@@ -178,7 +178,6 @@ export const createInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -203,7 +202,6 @@ export const updateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -228,7 +226,6 @@ export const deleteInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -496,6 +493,51 @@ export const deleteMessage = /* GraphQL */ `
     }
   }
 `;
+export const createAnnouncement = /* GraphQL */ `
+  mutation CreateAnnouncement(
+    $input: CreateAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    createAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateAnnouncement = /* GraphQL */ `
+  mutation UpdateAnnouncement(
+    $input: UpdateAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    updateAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteAnnouncement = /* GraphQL */ `
+  mutation DeleteAnnouncement(
+    $input: DeleteAnnouncementInput!
+    $condition: ModelAnnouncementConditionInput
+  ) {
+    deleteAnnouncement(input: $input, condition: $condition) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const createInvite = /* GraphQL */ `
   mutation CreateInvite(
     $input: CreateInviteInput!
@@ -635,7 +677,6 @@ export const createUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -680,7 +721,6 @@ export const updateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -725,7 +765,6 @@ export const deleteUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -877,48 +916,6 @@ export const deleteUserClubs = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-    }
-  }
-`;
-export const createAnnouncement = /* GraphQL */ `
-  mutation CreateAnnouncement(
-    $input: CreateAnnouncementInput!
-    $condition: ModelAnnouncementConditionInput
-  ) {
-    createAnnouncement(input: $input, condition: $condition) {
-      id
-      author
-      content
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateAnnouncement = /* GraphQL */ `
-  mutation UpdateAnnouncement(
-    $input: UpdateAnnouncementInput!
-    $condition: ModelAnnouncementConditionInput
-  ) {
-    updateAnnouncement(input: $input, condition: $condition) {
-      id
-      author
-      content
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteAnnouncement = /* GraphQL */ `
-  mutation DeleteAnnouncement(
-    $input: DeleteAnnouncementInput!
-    $condition: ModelAnnouncementConditionInput
-  ) {
-    deleteAnnouncement(input: $input, condition: $condition) {
-      id
-      author
-      content
-      createdAt
-      updatedAt
     }
   }
 `;

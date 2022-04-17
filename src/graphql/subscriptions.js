@@ -149,8 +149,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateInterest = /* GraphQL */ `
-  subscription OnCreateInterest($owner: String) {
-    onCreateInterest(owner: $owner) {
+  subscription OnCreateInterest {
+    onCreateInterest {
       id
       interestName
       users {
@@ -166,13 +166,12 @@ export const onCreateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateInterest = /* GraphQL */ `
-  subscription OnUpdateInterest($owner: String) {
-    onUpdateInterest(owner: $owner) {
+  subscription OnUpdateInterest {
+    onUpdateInterest {
       id
       interestName
       users {
@@ -188,13 +187,12 @@ export const onUpdateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteInterest = /* GraphQL */ `
-  subscription OnDeleteInterest($owner: String) {
-    onDeleteInterest(owner: $owner) {
+  subscription OnDeleteInterest {
+    onDeleteInterest {
       id
       interestName
       users {
@@ -210,7 +208,6 @@ export const onDeleteInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -460,6 +457,42 @@ export const onDeleteMessage = /* GraphQL */ `
     }
   }
 `;
+export const onCreateAnnouncement = /* GraphQL */ `
+  subscription OnCreateAnnouncement($owner: String) {
+    onCreateAnnouncement(owner: $owner) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateAnnouncement = /* GraphQL */ `
+  subscription OnUpdateAnnouncement($owner: String) {
+    onUpdateAnnouncement(owner: $owner) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteAnnouncement = /* GraphQL */ `
+  subscription OnDeleteAnnouncement($owner: String) {
+    onDeleteAnnouncement(owner: $owner) {
+      id
+      author
+      content
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreateInvite = /* GraphQL */ `
   subscription OnCreateInvite($owner: String) {
     onCreateInvite(owner: $owner) {
@@ -587,7 +620,6 @@ export const onCreateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -629,7 +661,6 @@ export const onUpdateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -671,7 +702,6 @@ export const onDeleteUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -814,39 +844,6 @@ export const onDeleteUserClubs = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-    }
-  }
-`;
-export const onCreateAnnouncement = /* GraphQL */ `
-  subscription OnCreateAnnouncement {
-    onCreateAnnouncement {
-      id
-      author
-      content
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateAnnouncement = /* GraphQL */ `
-  subscription OnUpdateAnnouncement {
-    onUpdateAnnouncement {
-      id
-      author
-      content
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteAnnouncement = /* GraphQL */ `
-  subscription OnDeleteAnnouncement {
-    onDeleteAnnouncement {
-      id
-      author
-      content
-      createdAt
-      updatedAt
     }
   }
 `;
