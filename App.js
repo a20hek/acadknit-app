@@ -107,7 +107,11 @@ function TabNavigator() {
         component={HomeStackScreen}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="Friends" component={FriendsScreen} />
+      <Tab.Screen
+        name="Friends"
+        component={FriendsScreen}
+        options={{headerShown: false}}
+      />
       <Tab.Screen name="Feed" component={FeedScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

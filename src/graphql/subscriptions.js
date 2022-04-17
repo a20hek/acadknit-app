@@ -13,10 +13,10 @@ export const onCreateUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -62,10 +62,10 @@ export const onUpdateUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -111,10 +111,10 @@ export const onDeleteUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -153,29 +153,19 @@ export const onCreateInterest = /* GraphQL */ `
     onCreateInterest(owner: $owner) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -185,29 +175,19 @@ export const onUpdateInterest = /* GraphQL */ `
     onUpdateInterest(owner: $owner) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -217,29 +197,19 @@ export const onDeleteInterest = /* GraphQL */ `
     onDeleteInterest(owner: $owner) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -571,6 +541,132 @@ export const onDeleteInvite = /* GraphQL */ `
           nextToken
         }
         joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateUserInterests = /* GraphQL */ `
+  subscription OnCreateUserInterests($owner: String) {
+    onCreateUserInterests(owner: $owner) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUserInterests = /* GraphQL */ `
+  subscription OnUpdateUserInterests($owner: String) {
+    onUpdateUserInterests(owner: $owner) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUserInterests = /* GraphQL */ `
+  subscription OnDeleteUserInterests($owner: String) {
+    onDeleteUserInterests(owner: $owner) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
           nextToken
         }
         createdAt

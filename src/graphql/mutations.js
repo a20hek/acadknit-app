@@ -16,10 +16,10 @@ export const createUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -68,10 +68,10 @@ export const updateUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -120,10 +120,10 @@ export const deleteUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -165,29 +165,19 @@ export const createInterest = /* GraphQL */ `
     createInterest(input: $input, condition: $condition) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -200,29 +190,19 @@ export const updateInterest = /* GraphQL */ `
     updateInterest(input: $input, condition: $condition) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -235,29 +215,19 @@ export const deleteInterest = /* GraphQL */ `
     deleteInterest(input: $input, condition: $condition) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -616,6 +586,141 @@ export const deleteInvite = /* GraphQL */ `
           nextToken
         }
         joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createUserInterests = /* GraphQL */ `
+  mutation CreateUserInterests(
+    $input: CreateUserInterestsInput!
+    $condition: ModelUserInterestsConditionInput
+  ) {
+    createUserInterests(input: $input, condition: $condition) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateUserInterests = /* GraphQL */ `
+  mutation UpdateUserInterests(
+    $input: UpdateUserInterestsInput!
+    $condition: ModelUserInterestsConditionInput
+  ) {
+    updateUserInterests(input: $input, condition: $condition) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteUserInterests = /* GraphQL */ `
+  mutation DeleteUserInterests(
+    $input: DeleteUserInterestsInput!
+    $condition: ModelUserInterestsConditionInput
+  ) {
+    deleteUserInterests(input: $input, condition: $condition) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
           nextToken
         }
         createdAt

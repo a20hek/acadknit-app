@@ -13,10 +13,10 @@ export const getUser = /* GraphQL */ `
       interests {
         items {
           id
-          interestName
+          userID
+          interestID
           createdAt
           updatedAt
-          userInterestsId
           owner
         }
         nextToken
@@ -90,29 +90,19 @@ export const getInterest = /* GraphQL */ `
     getInterest(id: $id) {
       id
       interestName
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
+      users {
+        items {
+          id
+          userID
+          interestID
+          createdAt
+          updatedAt
+          owner
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
+        nextToken
       }
       createdAt
       updatedAt
-      userInterestsId
       owner
     }
   }
@@ -127,20 +117,11 @@ export const listInterests = /* GraphQL */ `
       items {
         id
         interestName
-        user {
-          id
-          name
-          college
-          degree
-          email
-          year
-          createdAt
-          updatedAt
-          owner
+        users {
+          nextToken
         }
         createdAt
         updatedAt
-        userInterestsId
         owner
       }
       nextToken
@@ -341,6 +322,85 @@ export const listInvites = /* GraphQL */ `
           degree
           email
           year
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getUserInterests = /* GraphQL */ `
+  query GetUserInterests($id: ID!) {
+    getUserInterests(id: $id) {
+      id
+      userID
+      interestID
+      user {
+        id
+        name
+        college
+        degree
+        email
+        year
+        interests {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        joinedClubs {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      interest {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listUserInterests = /* GraphQL */ `
+  query ListUserInterests(
+    $filter: ModelUserInterestsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserInterests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userID
+        interestID
+        user {
+          id
+          name
+          college
+          degree
+          email
+          year
+          createdAt
+          updatedAt
+          owner
+        }
+        interest {
+          id
+          interestName
           createdAt
           updatedAt
           owner
@@ -554,15 +614,44 @@ export const userByYear = /* GraphQL */ `
     }
   }
 `;
-export const clubByclubName = /* GraphQL */ `
-  query ClubByclubName(
+export const interestByInterestName = /* GraphQL */ `
+  query InterestByInterestName(
+    $interestName: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelInterestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    interestByInterestName(
+      interestName: $interestName
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const clubByName = /* GraphQL */ `
+  query ClubByName(
     $clubName: String!
     $sortDirection: ModelSortDirection
     $filter: ModelClubFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    clubByclubName(
+    clubByName(
       clubName: $clubName
       sortDirection: $sortDirection
       filter: $filter
@@ -598,7 +687,6 @@ export const getAnnouncement = /* GraphQL */ `
     }
   }
 `;
-
 export const listAnnouncements = /* GraphQL */ `
   query ListAnnouncements(
     $filter: ModelAnnouncementFilterInput
