@@ -9,62 +9,6 @@ import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
 
 export default function FriendsScreen() {
-  const K_OPTIONS = [
-    {
-      item: 'Juventus',
-      id: 'JUVE',
-    },
-    {
-      item: 'Real Madrid',
-      id: 'RM',
-    },
-    {
-      item: 'Barcelona',
-      id: 'BR',
-    },
-    {
-      item: 'PSG',
-      id: 'PSG',
-    },
-    {
-      item: 'FC Bayern Munich',
-      id: 'FBM',
-    },
-    {
-      item: 'Manchester United FC',
-      id: 'MUN',
-    },
-    {
-      item: 'Manchester City FC',
-      id: 'MCI',
-    },
-    {
-      item: 'Everton FC',
-      id: 'EVE',
-    },
-    {
-      item: 'Tottenham Hotspur FC',
-      id: 'TOT',
-    },
-    {
-      item: 'Chelsea FC',
-      id: 'CHE',
-    },
-    {
-      item: 'Liverpool FC',
-      id: 'LIV',
-    },
-    {
-      item: 'Arsenal FC',
-      id: 'ARS',
-    },
-
-    {
-      item: 'Leicester City FC',
-      id: 'LEI',
-    },
-  ];
-
   const [interests, setInterests] = useState([]);
   const [selectedInterests, setSelectedInterests] = useState([]);
 
@@ -77,7 +21,13 @@ export default function FriendsScreen() {
       const interestslist = await API.graphql(graphqlOperation(listInterests));
       const interestInfo = interestslist.data.listInterests;
       if (interestslist) {
-        setInterests(interestInfo.items);
+        const interestmap = interestInfo.items.map(({interestName, id}) => ({
+          item: interestName,
+          id,
+        }));
+
+        setInterests(interestmap);
+
         console.log(interests);
       }
     } catch (e) {
@@ -102,16 +52,15 @@ export default function FriendsScreen() {
         <SelectBox
           width="80%"
           label="Select multiple"
-          options={K_OPTIONS}
+          options={interests}
           selectedValues={selectedInterests}
           onMultiSelect={onMultiChange()}
           onTapClose={onMultiChange()}
           isMulti
         />
       </Center>
-
-      {interests &&
-        interests.map(interestInfo => <Text>{interestInfo.interestName}</Text>)}
+      {selectedInterests &&
+        selectedInterests.map(item => <Text>{item.item}</Text>)}
     </Box>
   );
 }
