@@ -12,12 +12,10 @@ export const getUser = /* GraphQL */ `
       year
       interests {
         items {
-          id
-          userID
-          interestID
-          createdAt
-          updatedAt
-          owner
+          interest {
+            id
+            interestName
+          }
         }
         nextToken
       }
@@ -29,7 +27,6 @@ export const getUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -116,6 +113,11 @@ export const listInterests = /* GraphQL */ `
       items {
         id
         interestName
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -146,13 +148,11 @@ export const getClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -175,7 +175,6 @@ export const listClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -219,12 +218,10 @@ export const getMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
@@ -256,12 +253,10 @@ export const listMessages = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
-          owner
         }
         createdAt
         updatedAt
         userMessagesId
-        owner
       }
       nextToken
     }
@@ -473,7 +468,6 @@ export const getUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -509,7 +503,6 @@ export const listUserClubs = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
-          owner
         }
         createdAt
         updatedAt
@@ -691,7 +684,53 @@ export const clubByName = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const messagesbyClub = /* GraphQL */ `
+  query MessagesbyClub(
+    $clubID: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesbyClub(
+      clubID: $clubID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        content
+        author {
+          id
+          name
+          college
+          degree
+          email
+          year
+          createdAt
+          updatedAt
+          owner
+        }
+        clubID
+        club {
+          id
+          clubName
+          clubDesc
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        userMessagesId
       }
       nextToken
     }

@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   ScrollView,
+  View,
 } from 'native-base';
 import React, {useEffect, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
@@ -30,18 +31,18 @@ export default function HomeScreen({navigation}) {
   const getUserData = async () => {
     const currentUser = await Auth.currentAuthenticatedUser();
     try {
-      const currentUserData = await API.graphql(
-        graphqlOperation(getUser, {id: currentUser.attributes.sub}),
-      );
-      const currentUserInfo = currentUserData.data.getUser;
-
       if (currentUser) {
+        const currentUserData = await API.graphql(
+          graphqlOperation(getUser, {id: currentUser.attributes.sub}),
+        );
+
+        const currentUserInfo = currentUserData.data.getUser;
         setUserData(currentUserInfo);
         setClubData(currentUserInfo.joinedClubs?.items);
-        console.log(clubData);
+        console.log(currentUserInfo);
       }
     } catch (e) {
-      Alert.alert(e.message);
+      console.warn(e.message);
     }
   };
 
@@ -73,10 +74,6 @@ export default function HomeScreen({navigation}) {
     );
   };
 
-  const signOut = () => {
-    Auth.signOut();
-  };
-
   const handleKeyPress = () => {
     navigation.navigate('Club Search', {searchQuery});
     setSearchQuery('');
@@ -85,14 +82,14 @@ export default function HomeScreen({navigation}) {
   return (
     <>
       {userData && (
-        <ScrollView>
-          <Box bg="#fff" flex={1}>
+        <View bg="#fff" flex={1}>
+          <ScrollView>
             <Center>
               <SearchInput
-                value={searchQuery}
-                onSubmitEditing={handleKeyPress}
-                onChangeText={text => setSearchQuery(text)}
                 placeholder="Search for Clubs"
+                value={searchQuery}
+                onChangeText={text => setSearchQuery(text)}
+                onSubmitEditing={handleKeyPress}
               />
             </Center>
             <Text fontSize="16px" ml="8px">
@@ -110,11 +107,8 @@ export default function HomeScreen({navigation}) {
 
               <AddClub />
             </Flex>
-            <Center>
-              <Button onPress={signOut}>Sign Out</Button>
-            </Center>
-          </Box>
-        </ScrollView>
+          </ScrollView>
+        </View>
       )}
     </>
   );

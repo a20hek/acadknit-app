@@ -29,7 +29,6 @@ export const onCreateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -78,7 +77,6 @@ export const onUpdateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -127,7 +125,6 @@ export const onDeleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -212,8 +209,8 @@ export const onDeleteInterest = /* GraphQL */ `
   }
 `;
 export const onCreateClub = /* GraphQL */ `
-  subscription OnCreateClub($owner: String) {
-    onCreateClub(owner: $owner) {
+  subscription OnCreateClub {
+    onCreateClub {
       id
       clubName
       clubDesc
@@ -236,19 +233,17 @@ export const onCreateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateClub = /* GraphQL */ `
-  subscription OnUpdateClub($owner: String) {
-    onUpdateClub(owner: $owner) {
+  subscription OnUpdateClub {
+    onUpdateClub {
       id
       clubName
       clubDesc
@@ -271,19 +266,17 @@ export const onUpdateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteClub = /* GraphQL */ `
-  subscription OnDeleteClub($owner: String) {
-    onDeleteClub(owner: $owner) {
+  subscription OnDeleteClub {
+    onDeleteClub {
       id
       clubName
       clubDesc
@@ -306,19 +299,17 @@ export const onDeleteClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage($owner: String) {
-    onCreateMessage(owner: $owner) {
+  subscription OnCreateMessage {
+    onCreateMessage {
       id
       content
       author {
@@ -354,18 +345,16 @@ export const onCreateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
 export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage($owner: String) {
-    onUpdateMessage(owner: $owner) {
+  subscription OnUpdateMessage {
+    onUpdateMessage {
       id
       content
       author {
@@ -401,18 +390,16 @@ export const onUpdateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
 export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage($owner: String) {
-    onDeleteMessage(owner: $owner) {
+  subscription OnDeleteMessage {
+    onDeleteMessage {
       id
       content
       author {
@@ -448,12 +435,10 @@ export const onDeleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
@@ -747,7 +732,6 @@ export const onCreateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -793,7 +777,6 @@ export const onUpdateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -839,7 +822,6 @@ export const onDeleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt

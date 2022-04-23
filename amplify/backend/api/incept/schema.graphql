@@ -19,9 +19,7 @@ type Interest @model @auth(rules: [{allow: private}]) {
   users: [User] @manyToMany(relationName: "UserInterests")
 }
 
-type Club
-  @model
-  @auth(rules: [{allow: private, operations: [read, update]}, {allow: owner}]) {
+type Club @model @auth(rules: [{allow: private}]) {
   id: ID
   clubName: String @index(name: "byName", queryField: "clubByName")
   clubDesc: String
@@ -29,13 +27,16 @@ type Club
   messages: [Message] @hasMany(indexName: "byClub", fields: ["id"])
 }
 
-type Message
-  @model
-  @auth(rules: [{allow: private, operations: [read]}, {allow: owner}]) {
+type Message @model @auth(rules: [{allow: private}]) {
   id: ID!
   content: String
   author: User
-  clubID: ID! @index(name: "byClub", sortKeyFields: ["createdAt"])
+  clubID: ID!
+    @index(
+      name: "byClub"
+      sortKeyFields: ["createdAt"]
+      queryField: "messagesbyClub"
+    )
   club: Club @belongsTo
   createdAt: String
 }

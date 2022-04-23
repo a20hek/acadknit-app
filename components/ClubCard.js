@@ -2,7 +2,7 @@ import {Box, Text, Flex, Image, Button} from 'native-base';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-export default function ClubCard({name, imgUrl}) {
+export default function ClubCard({name, imgUrl, clubID}) {
   const navigation = useNavigation();
   return (
     <Button
@@ -18,6 +18,7 @@ export default function ClubCard({name, imgUrl}) {
       onPress={() =>
         navigation.navigate('ClubChat', {
           name: name,
+          clubID: clubID,
         })
       }>
       <Flex flexDir="column">

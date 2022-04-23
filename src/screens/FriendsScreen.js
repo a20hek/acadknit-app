@@ -9,10 +9,12 @@ import {createUserInterests} from '../graphql/mutations';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
 
-export default function FriendsScreen() {
+export default function FriendsScreen({navigation}) {
   const [interests, setInterests] = useState([]);
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [userID, setUserID] = useState('');
+
+  const [searchQuery, setSearchQuery] = useState('');
 
   function onMultiChange() {
     console.log(selectedInterests);
@@ -77,10 +79,23 @@ export default function FriendsScreen() {
     }
   };
 
+  const handleKeyPress = () => {
+    navigation.navigate('Friends Search', {
+      screen: 'Classmates',
+      params: {searchQuery: searchQuery},
+    });
+    setSearchQuery('');
+  };
+
   return (
     <Box w="100%" m="0" p="0" flex={1} backgroundColor="#fff">
       <Center>
-        <SearchInput placeholder="Search for friends" />
+        <SearchInput
+          placeholder="Search for friends"
+          value={searchQuery}
+          onChangeText={text => setSearchQuery(text)}
+          onSubmitEditing={handleKeyPress}
+        />
       </Center>
       {/* <Flex justifyContent="center" alignItems="center">
         <FriendReq />
@@ -100,8 +115,7 @@ export default function FriendsScreen() {
           isMulti
         />
       </Center>
-      {selectedInterests &&
-        selectedInterests.map(item => <Text>{item.item}</Text>)}
+
       <Center>
         <Button m="16px" w="60%" onPress={submitInterest}>
           Submit

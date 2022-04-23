@@ -1,7 +1,7 @@
 import {Box, Text, Input, Center} from 'native-base';
 import React, {useState, useEffect} from 'react';
 import {API, graphqlOperation} from 'aws-amplify';
-import {getUser, clubByclubName} from '../graphql/queries';
+import {getUser, clubByName} from '../graphql/queries';
 import {useRoute} from '@react-navigation/native';
 import ClubSearchCard from '../../components/ClubSearchCard';
 import SearchInput from '../../components/SearchInput';
@@ -20,10 +20,10 @@ export default function ClubSearchScreen({navigation}) {
 
   async function searchClubs(searchQuery) {
     const clubData = await API.graphql(
-      graphqlOperation(clubByclubName, {clubName: searchQuery}),
+      graphqlOperation(clubByName, {clubName: searchQuery}),
     );
-    setClubInfo(clubData?.data?.clubByclubName?.items);
-    console.log(clubData?.data?.clubByclubName?.items);
+    setClubInfo(clubData?.data?.clubByName?.items);
+    console.log(clubData?.data?.clubByName?.items);
   }
 
   return (

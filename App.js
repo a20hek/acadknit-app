@@ -49,7 +49,14 @@ import AddClubScreen from './src/screens/AddClubScreen';
 import ClubChatScreen from './src/screens/ClubChatScreen';
 import ClubSearchScreen from './src/screens/ClubSearchScreen';
 
+import EditPersonalInfoScreen from './src/screens/EditPersonalInfoScreen';
+import EditInterestScreen from './src/screens/EditInterestScreen';
+
+import FriendNameSearchScreen from './src/screens/FriendNameSearchScreen';
+import FriendInterestSearchScreen from './src/screens/FriendInterestSearchScreen';
+
 import SearchInput from './components/SearchInput';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 Amplify.configure({
   ...awsconfig,
@@ -61,6 +68,9 @@ Amplify.configure({
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const FriendStack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 function HomeStackScreen() {
   return (
@@ -85,6 +95,70 @@ function HomeStackScreen() {
   );
 }
 
+function FriendStackScreen() {
+  return (
+    <FriendStack.Navigator>
+      <FriendStack.Screen
+        name="Friends"
+        component={FriendsScreen}
+        options={{headerShown: false}}
+      />
+      <FriendStack.Screen
+        name="Friends Search"
+        component={TopTabNav}
+        options={{
+          headerTitle: props => <SearchInput {...props} />,
+          headerTitleAlign: 'center',
+          headerBackVisible: false,
+          headerShadowVisible: false,
+        }}
+      />
+    </FriendStack.Navigator>
+  );
+}
+
+function TopTabNav() {
+  return (
+    <TopTab.Navigator
+      initialRouteName="Interests"
+      tabBarActiveTintColor="#00bb9e"
+      screenOptions={{
+        tabBarIndicatorStyle: {backgroundColor: '#00bb9e'},
+        tabBarLabelStyle: {
+          fontSize: 10,
+          textTransform: 'capitalize',
+          margin: 0,
+          padding: 0,
+          alignContent: 'center',
+        },
+        tabBarItemStyle: {height: 40, margin: 0, padding: 0},
+      }}>
+      <TopTab.Screen name="Interests" component={FriendInterestSearchScreen} />
+      <TopTab.Screen name="Classmates" component={FriendNameSearchScreen} />
+    </TopTab.Navigator>
+  );
+}
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{headerShown: false}}
+      />
+      <ProfileStack.Screen
+        name="Edit Personal Info"
+        component={EditPersonalInfoScreen}
+      />
+      <ProfileStack.Screen
+        name="Edit Interests"
+        component={EditInterestScreen}
+      />
+    </ProfileStack.Navigator>
+  );
+}
+
 function TabNavigator() {
   return (
     <Tab.Navigator
@@ -92,10 +166,10 @@ function TabNavigator() {
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => {
           if (route.name === 'HomeTab') return <HomeIcon color={color} />;
-          else if (route.name === 'Friends')
+          else if (route.name === 'FriendsTab')
             return <FriendsIcon color={color} />;
           else if (route.name === 'Feed') return <FeedIcon color={color} />;
-          else if (route.name === 'Profile')
+          else if (route.name === 'ProfileTab')
             return <ProfileIcon color={color} />;
         },
         tabBarActiveTintColor: '#00BB9E',
@@ -108,12 +182,16 @@ function TabNavigator() {
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name="Friends"
-        component={FriendsScreen}
+        name="FriendsTab"
+        component={FriendStackScreen}
         options={{headerShown: false}}
       />
       <Tab.Screen name="Feed" component={FeedScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileStackScreen}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 }
@@ -148,7 +226,7 @@ function MyNavigator() {
     return (
       <Box>
         <HStack space={2} justifyContent="center">
-          <Spinner accessibilityLabel="Loading posts" />
+          <Spinner accessibilityLabel="Loading" />
           <Heading color="primary.500" fontSize="md">
             Loading
           </Heading>

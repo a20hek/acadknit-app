@@ -32,7 +32,6 @@ export const createUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -84,7 +83,6 @@ export const updateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -136,7 +134,6 @@ export const deleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
@@ -257,13 +254,11 @@ export const createClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -295,13 +290,11 @@ export const updateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -333,13 +326,11 @@ export const deleteClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
-          owner
         }
         nextToken
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -384,12 +375,10 @@ export const createMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
@@ -434,12 +423,10 @@ export const updateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
@@ -484,12 +471,10 @@ export const deleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
       userMessagesId
-      owner
     }
   }
 `;
@@ -813,7 +798,6 @@ export const createUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -862,7 +846,6 @@ export const updateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
@@ -911,7 +894,6 @@ export const deleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       createdAt
       updatedAt
