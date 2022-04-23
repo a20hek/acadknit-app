@@ -1,33 +1,35 @@
 import {Box, Text} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {userByName} from '../graphql/queries';
-import {useRoute} from '@react-navigation/native';
+// import {useRoute} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
+import SearchQueryContext from '../context/SearchQueryContext';
 
 export default function FriendNameSearchScreen() {
-  const route = useRoute();
-  // const searchQuery = route?.params?.searchQuery;
+  // const route = useRoute();
+  const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
+  // const query = route?.params?.searchQuery;
 
   const [userInfo, setUserInfo] = useState([]);
-  const [input, setInput] = useState(route?.params?.searchQuery);
+  // const [input, setInput] = useState(route?.params?.query);
 
-  async function searchbyName(searchQuery) {
+  async function searchbyName(query) {
     const userData = await API.graphql(
-      graphqlOperation(userByName, {name: searchQuery}),
+      graphqlOperation(userByName, {name: query}),
     );
     setUserInfo(userData?.data?.userByName?.items);
     console.log(userData?.data?.userByName?.items);
   }
 
   useEffect(() => {
-    if (route?.params?.searchQuery) {
-      searchbyName(input);
+    if (searchQuery) {
+      searchbyName(searchQuery);
     }
   }, []);
 
   return (
     <Box bg="#fff" flex={1}>
-      {userInfo && <Text>FriendNameSearchScreen {input}</Text>}
+      {userInfo && <Text>FriendNameSearchScreen {searchQuery}</Text>}
     </Box>
   );
 }

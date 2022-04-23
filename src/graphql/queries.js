@@ -650,8 +650,8 @@ export const interestByInterestName = /* GraphQL */ `
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        # createdAt
+        # updatedAt
       }
       nextToken
     }

@@ -1,5 +1,5 @@
 import {Box, Center, Container, Text, Flex, Button} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import FriendReq from '../../components/FriendReq';
 import SearchInput from '../../components/SearchInput';
 import SelectBox from 'react-native-multi-selectbox';
@@ -8,13 +8,16 @@ import {listInterests, getUser} from '../graphql/queries';
 import {createUserInterests} from '../graphql/mutations';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
+import SearchQueryContext from '../context/SearchQueryContext';
 
 export default function FriendsScreen({navigation}) {
   const [interests, setInterests] = useState([]);
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [userID, setUserID] = useState('');
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [query, setQuery] = useState('');
+
+  const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
 
   function onMultiChange() {
     console.log(selectedInterests);
@@ -82,9 +85,10 @@ export default function FriendsScreen({navigation}) {
   const handleKeyPress = () => {
     navigation.navigate('Friends Search', {
       screen: 'Classmates',
-      params: {searchQuery: searchQuery},
+      // params: {query: query},
     });
-    setSearchQuery('');
+    setSearchQuery(query);
+    setQuery('');
   };
 
   return (
@@ -92,8 +96,8 @@ export default function FriendsScreen({navigation}) {
       <Center>
         <SearchInput
           placeholder="Search for friends"
-          value={searchQuery}
-          onChangeText={text => setSearchQuery(text)}
+          value={query}
+          onChangeText={text => setQuery(text)}
           onSubmitEditing={handleKeyPress}
         />
       </Center>

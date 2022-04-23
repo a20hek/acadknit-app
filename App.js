@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createContext, useContext} from 'react';
 import {
   Text,
   Link,
@@ -58,6 +58,8 @@ import FriendInterestSearchScreen from './src/screens/FriendInterestSearchScreen
 import SearchInput from './components/SearchInput';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
+import SearchQueryContext from './src/context/SearchQueryContext';
+
 Amplify.configure({
   ...awsconfig,
   Analytics: {
@@ -71,6 +73,8 @@ const HomeStack = createNativeStackNavigator();
 const FriendStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
+
+// const SearchQueryContext = createContext(null);
 
 function HomeStackScreen() {
   return (
@@ -96,24 +100,35 @@ function HomeStackScreen() {
 }
 
 function FriendStackScreen() {
+  const [searchQuery, setSearchQuery] = useState(null);
   return (
-    <FriendStack.Navigator>
-      <FriendStack.Screen
-        name="Friends"
-        component={FriendsScreen}
-        options={{headerShown: false}}
-      />
-      <FriendStack.Screen
-        name="Friends Search"
-        component={TopTabNav}
-        options={{
-          headerTitle: props => <SearchInput {...props} />,
-          headerTitleAlign: 'center',
-          headerBackVisible: false,
-          headerShadowVisible: false,
-        }}
-      />
-    </FriendStack.Navigator>
+    <SearchQueryContext.Provider value={{searchQuery, setSearchQuery}}>
+      <FriendStack.Navigator>
+        <FriendStack.Screen
+          name="Friends"
+          component={FriendsScreen}
+          options={{headerShown: false}}
+        />
+        <FriendStack.Screen
+          name="Friends Search"
+          component={TopTabNav}
+          options={{
+            headerTitle: props => (
+              <SearchInput
+                placeholder="Search.."
+                value={searchQuery}
+                onChangeText={text => setSearchQuery(text)}
+                // onSubmitEditing={() => searchClubs(input)}
+                {...props}
+              />
+            ),
+            headerTitleAlign: 'center',
+            headerBackVisible: false,
+            headerShadowVisible: false,
+          }}
+        />
+      </FriendStack.Navigator>
+    </SearchQueryContext.Provider>
   );
 }
 

@@ -1,12 +1,27 @@
 import {Box, Text} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {interestByInterestName} from '../graphql/queries';
-import {useRoute} from '@react-navigation/native';
+import {API, graphqlOperation} from 'aws-amplify';
+import SearchQueryContext from '../context/SearchQueryContext';
 
 export default function FriendInterestSearchScreen() {
-  const route = useRoute();
-  // const [input, setInput] = useState(route?.params?.searchQuery);
-  const searchQuery = route?.params?.searchQuery;
+  const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
+  const [interestInfo, setInterestInfo] = useState([]);
+
+  async function searchbyInterest(query) {
+    const interestData = await API.graphql(
+      graphqlOperation(interestByInterestName, {interestName: query}),
+    );
+    setInterestInfo(interestData);
+    // console.log(userData?.data?.userByName?.items);
+    console.log(interestInfo);
+  }
+
+  useEffect(() => {
+    if (searchQuery) {
+      searchbyInterest(searchQuery);
+    }
+  }, []);
 
   return (
     <Box bg="#fff" flex={1}>
