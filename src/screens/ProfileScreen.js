@@ -13,36 +13,15 @@ import {
   Badge,
   Pressable,
 } from 'native-base';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Alert} from 'react-native';
 import {getUser} from '../graphql/queries';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
+import UserContext from '../context/UserContext';
 
 export default function ProfileScreen({navigation}) {
-  const [userData, setUserData] = useState([]);
-  const [interestData, setInterestData] = useState([]);
-
-  const getUserData = async () => {
-    const currentUser = await Auth.currentAuthenticatedUser();
-    try {
-      const currentUserData = await API.graphql(
-        graphqlOperation(getUser, {id: currentUser.attributes.sub}),
-      );
-      const currentUserInfo = currentUserData.data.getUser;
-
-      if (currentUser) {
-        setUserData(currentUserInfo);
-        setInterestData(currentUserInfo.interests?.items);
-        console.log(interestData);
-      }
-    } catch (e) {
-      Alert.alert(e.message);
-    }
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
+  const userData = useContext(UserContext);
+  const interestData = userData.interests?.items;
 
   const ListButton = ({text, onPress, txtclr}) => {
     return (
@@ -66,7 +45,7 @@ export default function ProfileScreen({navigation}) {
       <Text fontSize="16px" mt="8px">
         {userData.college}
       </Text>
-      <Flex direction="row" mt="8px">
+      <Flex direction="row" mt="8px" flexWrap="wrap">
         {/* <HStack
           space={{
             base: 2,
@@ -99,7 +78,12 @@ export default function ProfileScreen({navigation}) {
         />
         <ListButton
           text="Edit Interests"
-          onPress={() => navigation.navigate('Edit Interests', {interestData})}
+          onPress={() =>
+            navigation.navigate('Edit Interests', {
+              interestData: interestData,
+              userData: userData,
+            })
+          }
         />
 
         <ListButton text="Log Out" txtclr="#E53935" onPress={signOut} />

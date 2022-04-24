@@ -24,7 +24,8 @@ import {
 
 import Amplify from 'aws-amplify';
 import awsconfig from './src/aws-exports';
-import {Auth, Hub} from 'aws-amplify';
+import {Auth, Hub, API, graphqlOperation} from 'aws-amplify';
+import {getUser} from './src/graphql/queries';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -58,6 +59,7 @@ import FriendInterestSearchScreen from './src/screens/FriendInterestSearchScreen
 import SearchInput from './components/SearchInput';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
+import UserContext from './src/context/UserContext';
 import SearchQueryContext from './src/context/SearchQueryContext';
 
 Amplify.configure({
@@ -175,39 +177,64 @@ function ProfileStackScreen() {
 }
 
 function TabNavigator() {
+  const [userData, setUserData] = useState([]);
+
+  const getUserData = async () => {
+    const currentUser = await Auth.currentAuthenticatedUser();
+    try {
+      if (currentUser) {
+        const currentUserData = await API.graphql(
+          graphqlOperation(getUser, {id: currentUser.attributes.sub}),
+        );
+
+        const currentUserInfo = currentUserData.data.getUser;
+        setUserData(currentUserInfo);
+        // console.log(currentUserInfo);
+      }
+    } catch (e) {
+      console.warn(e.message);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={({route}) => ({
-        tabBarIcon: ({color}) => {
-          if (route.name === 'HomeTab') return <HomeIcon color={color} />;
-          else if (route.name === 'FriendsTab')
-            return <FriendsIcon color={color} />;
-          else if (route.name === 'Feed') return <FeedIcon color={color} />;
-          else if (route.name === 'ProfileTab')
-            return <ProfileIcon color={color} />;
-        },
-        tabBarActiveTintColor: '#00BB9E',
-        tabBarInactiveTintColor: '#8c8c8c',
-        tabBarShowLabel: false,
-      })}>
-      <Tab.Screen
-        name="HomeTab"
-        component={HomeStackScreen}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="FriendsTab"
-        component={FriendStackScreen}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen name="Feed" component={FeedScreen} />
-      <Tab.Screen
-        name="ProfileTab"
-        component={ProfileStackScreen}
-        options={{headerShown: false}}
-      />
-    </Tab.Navigator>
+    <UserContext.Provider value={userData}>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={({route}) => ({
+          tabBarIcon: ({color}) => {
+            if (route.name === 'HomeTab') return <HomeIcon color={color} />;
+            else if (route.name === 'FriendsTab')
+              return <FriendsIcon color={color} />;
+            else if (route.name === 'Feed') return <FeedIcon color={color} />;
+            else if (route.name === 'ProfileTab')
+              return <ProfileIcon color={color} />;
+          },
+          tabBarActiveTintColor: '#00BB9E',
+          tabBarInactiveTintColor: '#8c8c8c',
+          tabBarShowLabel: false,
+        })}>
+        <Tab.Screen
+          name="HomeTab"
+          component={HomeStackScreen}
+          options={{headerShown: false}}
+        />
+        <Tab.Screen
+          name="FriendsTab"
+          component={FriendStackScreen}
+          options={{headerShown: false}}
+        />
+        <Tab.Screen name="Feed" component={FeedScreen} />
+        <Tab.Screen
+          name="ProfileTab"
+          component={ProfileStackScreen}
+          options={{headerShown: false}}
+        />
+      </Tab.Navigator>
+    </UserContext.Provider>
   );
 }
 

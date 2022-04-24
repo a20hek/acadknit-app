@@ -11,40 +11,20 @@ import {
   ScrollView,
   View,
 } from 'native-base';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
+import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {getUser} from '../graphql/queries';
 import SearchInput from '../../components/SearchInput';
+import UserContext from '../context/UserContext';
 
 export default function HomeScreen({navigation}) {
-  const [userData, setUserData] = useState([]);
-  const [clubData, setClubData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    getUserData();
-  }, []);
-
-  const getUserData = async () => {
-    const currentUser = await Auth.currentAuthenticatedUser();
-    try {
-      if (currentUser) {
-        const currentUserData = await API.graphql(
-          graphqlOperation(getUser, {id: currentUser.attributes.sub}),
-        );
-
-        const currentUserInfo = currentUserData.data.getUser;
-        setUserData(currentUserInfo);
-        setClubData(currentUserInfo.joinedClubs?.items);
-        console.log(currentUserInfo);
-      }
-    } catch (e) {
-      console.warn(e.message);
-    }
-  };
+  const userData = useContext(UserContext);
+  const clubData = userData?.joinedClubs?.items;
 
   const AddClub = () => {
     return (

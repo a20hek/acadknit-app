@@ -19,17 +19,6 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
       }
-      messages {
-        items {
-          id
-          content
-          clubID
-          createdAt
-          updatedAt
-          userMessagesId
-        }
-        nextToken
-      }
       joinedClubs {
         items {
           id
@@ -113,13 +102,7 @@ export const listInterests = /* GraphQL */ `
       items {
         id
         interestName
-        users {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
-      nextToken
     }
   }
 `;
@@ -530,22 +513,16 @@ export const userByName = /* GraphQL */ `
       items {
         id
         name
-        college
-        degree
-        email
         year
+        degree
         interests {
-          nextToken
+          items {
+            interest {
+              id
+              interestName
+            }
+          }
         }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -645,13 +622,20 @@ export const interestByInterestName = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
-        interestName
         users {
-          nextToken
+          items {
+            user {
+              id
+              name
+              degree
+              year
+            }
+            interest {
+              interestName
+              id
+            }
+          }
         }
-        # createdAt
-        # updatedAt
       }
       nextToken
     }

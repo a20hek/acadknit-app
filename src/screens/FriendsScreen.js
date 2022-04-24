@@ -9,36 +9,22 @@ import {createUserInterests} from '../graphql/mutations';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {Alert} from 'react-native';
 import SearchQueryContext from '../context/SearchQueryContext';
+import UserContext from '../context/UserContext';
 
 export default function FriendsScreen({navigation}) {
   const [interests, setInterests] = useState([]);
   const [selectedInterests, setSelectedInterests] = useState([]);
-  const [userID, setUserID] = useState('');
-
   const [query, setQuery] = useState('');
 
+  const userInfo = useContext(UserContext);
   const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
+
+  const userID = userInfo.id;
 
   function onMultiChange() {
     console.log(selectedInterests);
     return item => setSelectedInterests(xorBy(selectedInterests, [item], 'id'));
   }
-
-  const getUserData = async () => {
-    const currentUser = await Auth.currentAuthenticatedUser();
-    try {
-      const currentUserData = await API.graphql(
-        graphqlOperation(getUser, {id: currentUser.attributes.sub}),
-      );
-      const currentUserInfo = currentUserData.data.getUser.id;
-
-      if (currentUser) {
-        setUserID(currentUserInfo);
-      }
-    } catch (e) {
-      Alert.alert(e.message);
-    }
-  };
 
   const getAllInterests = async () => {
     try {
@@ -61,10 +47,6 @@ export default function FriendsScreen({navigation}) {
     getAllInterests();
   }, []);
 
-  useEffect(() => {
-    getUserData();
-  }, []);
-
   const submitInterest = async () => {
     for (let i = 0; i < selectedInterests.length; i++) {
       try {
@@ -84,8 +66,7 @@ export default function FriendsScreen({navigation}) {
 
   const handleKeyPress = () => {
     navigation.navigate('Friends Search', {
-      screen: 'Classmates',
-      // params: {query: query},
+      screen: 'Interests',
     });
     setSearchQuery(query);
     setQuery('');
@@ -95,7 +76,7 @@ export default function FriendsScreen({navigation}) {
     <Box w="100%" m="0" p="0" flex={1} backgroundColor="#fff">
       <Center>
         <SearchInput
-          placeholder="Search for friends"
+          placeholder="Search by Interests or Name"
           value={query}
           onChangeText={text => setQuery(text)}
           onSubmitEditing={handleKeyPress}
@@ -104,7 +85,6 @@ export default function FriendsScreen({navigation}) {
       {/* <Flex justifyContent="center" alignItems="center">
         <FriendReq />
       </Flex> */}
-
       <Center>
         <SelectBox
           width="80%"

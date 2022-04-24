@@ -4,6 +4,7 @@ import {userByName} from '../graphql/queries';
 // import {useRoute} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
 import SearchQueryContext from '../context/SearchQueryContext';
+import FriendNameSearchCard from '../../components/FriendNameSearchCard';
 
 export default function FriendNameSearchScreen() {
   // const route = useRoute();
@@ -25,11 +26,12 @@ export default function FriendNameSearchScreen() {
     if (searchQuery) {
       searchbyName(searchQuery);
     }
-  }, []);
+  }, [searchQuery]);
 
   return (
     <Box bg="#fff" flex={1}>
-      {userInfo && <Text>FriendNameSearchScreen {searchQuery}</Text>}
+      {userInfo &&
+        userInfo.map(user => <FriendNameSearchCard userData={user} />)}
     </Box>
   );
 }
