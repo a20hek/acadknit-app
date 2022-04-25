@@ -40,6 +40,7 @@ export const getUser = /* GraphQL */ `
     }
   }
 `;
+
 export const listUsers = /* GraphQL */ `
   query ListUsers(
     $filter: ModelUserFilterInput
@@ -89,6 +90,7 @@ export const getInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -106,6 +108,7 @@ export const listInterests = /* GraphQL */ `
     }
   }
 `;
+
 export const getClub = /* GraphQL */ `
   query GetClub($id: ID!) {
     getClub(id: $id) {
@@ -131,11 +134,13 @@ export const getClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -158,6 +163,7 @@ export const listClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -168,26 +174,6 @@ export const getMessage = /* GraphQL */ `
     getMessage(id: $id) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -201,10 +187,12 @@ export const getMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
@@ -218,17 +206,6 @@ export const listMessages = /* GraphQL */ `
       items {
         id
         content
-        author {
-          id
-          name
-          college
-          degree
-          email
-          year
-          createdAt
-          updatedAt
-          owner
-        }
         clubID
         club {
           id
@@ -236,10 +213,12 @@ export const listMessages = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
         userMessagesId
+        owner
       }
       nextToken
     }
@@ -281,26 +260,7 @@ export const getInvite = /* GraphQL */ `
     getInvite(id: $id) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -317,17 +277,7 @@ export const listInvites = /* GraphQL */ `
       items {
         id
         userID
-        user {
-          id
-          name
-          college
-          degree
-          email
-          year
-          createdAt
-          updatedAt
-          owner
-        }
+        clubID
         createdAt
         updatedAt
         owner
@@ -370,6 +320,7 @@ export const getUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -386,28 +337,10 @@ export const listUserInterests = /* GraphQL */ `
     listUserInterests(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userID
-        interestID
-        user {
-          id
-          name
-          college
-          degree
-          email
-          year
-          createdAt
-          updatedAt
-          owner
-        }
         interest {
           id
           interestName
-          createdAt
-          updatedAt
         }
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -451,6 +384,7 @@ export const getUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -486,6 +420,7 @@ export const listUserClubs = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
@@ -641,6 +576,7 @@ export const interestByInterestName = /* GraphQL */ `
     }
   }
 `;
+
 export const clubByName = /* GraphQL */ `
   query ClubByName(
     $clubName: String!
@@ -673,6 +609,7 @@ export const clubByName = /* GraphQL */ `
     }
   }
 `;
+
 export const messagesbyClub = /* GraphQL */ `
   query MessagesbyClub(
     $clubID: ID!
@@ -693,17 +630,6 @@ export const messagesbyClub = /* GraphQL */ `
       items {
         id
         content
-        author {
-          id
-          name
-          college
-          degree
-          email
-          year
-          createdAt
-          updatedAt
-          owner
-        }
         clubID
         club {
           id
@@ -711,10 +637,12 @@ export const messagesbyClub = /* GraphQL */ `
           clubDesc
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
         userMessagesId
+        owner
       }
       nextToken
     }

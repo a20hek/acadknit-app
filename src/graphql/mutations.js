@@ -32,6 +32,7 @@ export const createUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -83,6 +84,7 @@ export const updateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -134,6 +136,7 @@ export const deleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -175,6 +178,7 @@ export const createInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -199,6 +203,7 @@ export const updateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -223,6 +228,7 @@ export const deleteInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -254,11 +260,13 @@ export const createClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -290,11 +298,13 @@ export const updateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -326,11 +336,13 @@ export const deleteClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -342,26 +354,6 @@ export const createMessage = /* GraphQL */ `
     createMessage(input: $input, condition: $condition) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -375,10 +367,12 @@ export const createMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
@@ -390,26 +384,6 @@ export const updateMessage = /* GraphQL */ `
     updateMessage(input: $input, condition: $condition) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -423,10 +397,12 @@ export const updateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
@@ -438,26 +414,6 @@ export const deleteMessage = /* GraphQL */ `
     deleteMessage(input: $input, condition: $condition) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -471,10 +427,12 @@ export const deleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
@@ -531,26 +489,7 @@ export const createInvite = /* GraphQL */ `
     createInvite(input: $input, condition: $condition) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -565,26 +504,7 @@ export const updateInvite = /* GraphQL */ `
     updateInvite(input: $input, condition: $condition) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -599,26 +519,7 @@ export const deleteInvite = /* GraphQL */ `
     deleteInvite(input: $input, condition: $condition) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -662,6 +563,7 @@ export const createUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -706,6 +608,7 @@ export const updateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -750,6 +653,7 @@ export const deleteUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -798,6 +702,7 @@ export const createUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -846,6 +751,7 @@ export const updateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -894,6 +800,7 @@ export const deleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt

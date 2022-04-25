@@ -12,14 +12,18 @@ type User
   joinedClubs: [Club] @manyToMany(relationName: "UserClubs")
 }
 
-type Interest @model @auth(rules: [{allow: private}]) {
+type Interest
+  @model
+  @auth(rules: [{allow: private, operations: [read, update]}, {allow: owner}]) {
   id: ID!
   interestName: String
     @index(name: "byInterestName", queryField: "interestByInterestName")
   users: [User] @manyToMany(relationName: "UserInterests")
 }
 
-type Club @model @auth(rules: [{allow: private}]) {
+type Club
+  @model
+  @auth(rules: [{allow: private, operations: [read, update]}, {allow: owner}]) {
   id: ID
   clubName: String @index(name: "byName", queryField: "clubByName")
   clubDesc: String
@@ -27,10 +31,11 @@ type Club @model @auth(rules: [{allow: private}]) {
   messages: [Message] @hasMany(indexName: "byClub", fields: ["id"])
 }
 
-type Message @model @auth(rules: [{allow: private}]) {
+type Message
+  @model
+  @auth(rules: [{allow: private, operations: [read]}, {allow: owner}]) {
   id: ID!
   content: String
-  author: User
   clubID: ID!
     @index(
       name: "byClub"
@@ -39,6 +44,7 @@ type Message @model @auth(rules: [{allow: private}]) {
     )
   club: Club @belongsTo
   createdAt: String
+  userName: String
 }
 
 type Announcement
@@ -55,5 +61,5 @@ type Invite
   @auth(rules: [{allow: private, operations: [read, update]}, {allow: owner}]) {
   id: ID!
   userID: ID!
-  user: User
+  clubID: ID!
 }

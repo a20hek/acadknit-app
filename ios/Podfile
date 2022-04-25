@@ -12,6 +12,8 @@ target 'Incept' do
     :hermes_enabled => false
   )
 
+  pod 'RNAWSCognito', :path => '../node_modules/amazon-cognito-identity-js'
+
   target 'InceptTests' do
     inherit! :complete
     # Pods for testing

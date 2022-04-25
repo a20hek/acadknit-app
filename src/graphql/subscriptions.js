@@ -29,6 +29,7 @@ export const onCreateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -77,6 +78,7 @@ export const onUpdateUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -125,6 +127,7 @@ export const onDeleteUser = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
@@ -146,8 +149,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateInterest = /* GraphQL */ `
-  subscription OnCreateInterest {
-    onCreateInterest {
+  subscription OnCreateInterest($owner: String) {
+    onCreateInterest(owner: $owner) {
       id
       interestName
       users {
@@ -163,12 +166,13 @@ export const onCreateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateInterest = /* GraphQL */ `
-  subscription OnUpdateInterest {
-    onUpdateInterest {
+  subscription OnUpdateInterest($owner: String) {
+    onUpdateInterest(owner: $owner) {
       id
       interestName
       users {
@@ -184,12 +188,13 @@ export const onUpdateInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteInterest = /* GraphQL */ `
-  subscription OnDeleteInterest {
-    onDeleteInterest {
+  subscription OnDeleteInterest($owner: String) {
+    onDeleteInterest(owner: $owner) {
       id
       interestName
       users {
@@ -205,12 +210,13 @@ export const onDeleteInterest = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onCreateClub = /* GraphQL */ `
-  subscription OnCreateClub {
-    onCreateClub {
+  subscription OnCreateClub($owner: String) {
+    onCreateClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -233,17 +239,19 @@ export const onCreateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateClub = /* GraphQL */ `
-  subscription OnUpdateClub {
-    onUpdateClub {
+  subscription OnUpdateClub($owner: String) {
+    onUpdateClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -266,17 +274,19 @@ export const onUpdateClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteClub = /* GraphQL */ `
-  subscription OnDeleteClub {
-    onDeleteClub {
+  subscription OnDeleteClub($owner: String) {
+    onDeleteClub(owner: $owner) {
       id
       clubName
       clubDesc
@@ -299,39 +309,21 @@ export const onDeleteClub = /* GraphQL */ `
           createdAt
           updatedAt
           userMessagesId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage {
-    onCreateMessage {
+  subscription OnCreateMessage($owner: String) {
+    onCreateMessage(owner: $owner) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -345,38 +337,20 @@ export const onCreateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
 export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage {
-    onUpdateMessage {
+  subscription OnUpdateMessage($owner: String) {
+    onUpdateMessage(owner: $owner) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -390,38 +364,20 @@ export const onUpdateMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
 export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage {
-    onDeleteMessage {
+  subscription OnDeleteMessage($owner: String) {
+    onDeleteMessage(owner: $owner) {
       id
       content
-      author {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       clubID
       club {
         id
@@ -435,10 +391,12 @@ export const onDeleteMessage = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userMessagesId
+      owner
     }
   }
 `;
@@ -483,26 +441,7 @@ export const onCreateInvite = /* GraphQL */ `
     onCreateInvite(owner: $owner) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -514,26 +453,7 @@ export const onUpdateInvite = /* GraphQL */ `
     onUpdateInvite(owner: $owner) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -545,26 +465,7 @@ export const onDeleteInvite = /* GraphQL */ `
     onDeleteInvite(owner: $owner) {
       id
       userID
-      user {
-        id
-        name
-        college
-        degree
-        email
-        year
-        interests {
-          nextToken
-        }
-        messages {
-          nextToken
-        }
-        joinedClubs {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      clubID
       createdAt
       updatedAt
       owner
@@ -605,6 +506,7 @@ export const onCreateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -646,6 +548,7 @@ export const onUpdateUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -687,6 +590,7 @@ export const onDeleteUserInterests = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -732,6 +636,7 @@ export const onCreateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -777,6 +682,7 @@ export const onUpdateUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -822,6 +728,7 @@ export const onDeleteUserClubs = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt

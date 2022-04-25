@@ -26,19 +26,23 @@ export default function ClubChatScreen() {
     getUserID();
   }, []);
 
-  // useEffect(() => {
-  //   const subscription = API.graphql(
-  //     graphqlOperation(onCreateMessage, {owner: userID}),
-  //   ).subscribe({
-  //     next: event => {
-  //       setMessages([...messages, event.value.data.onCreateMessage]);
-  //     },
-  //   });
-
-  //   return () => {
-  //     subscription.unsubscribe();
-  //   };
-  // }, [messages]);
+  useEffect(() => {
+    try {
+      const subscription = API.graphql(
+        graphqlOperation(onCreateMessage, {owner: userID}),
+      ).subscribe({
+        next: event => {
+          setMessages([...messages, event.value.data.onCreateMessage]);
+        },
+      });
+      console.log(messages);
+      return () => {
+        subscription.unsubscribe();
+      };
+    } catch (e) {
+      console.log(e.message);
+    }
+  }, [messages]);
 
   const getUserID = async () => {
     const currentUser = await Auth.currentAuthenticatedUser();
@@ -78,10 +82,17 @@ export default function ClubChatScreen() {
   const input = {content: message, clubID: clubID};
 
   return (
-    <View bg="#fff" flex={1}>
+    <View bg="#fff" flex={1} p="16px">
       <ScrollView>
         <Text>ClubChatScreen</Text>
         <Text>ClubID is {clubID}</Text>
+        {messages &&
+          messages.map(messagemapped => (
+            <Box p="8px" bg="#00bb9e" m="2px" rounded="md" w="auto">
+              {/* <Text></Text> */}
+              <Text>{messagemapped.content}</Text>
+            </Box>
+          ))}
       </ScrollView>
       <View>
         <Center>

@@ -69,6 +69,8 @@ Amplify.configure({
   },
 });
 
+Auth.configure(awsconfig);
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
