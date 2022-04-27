@@ -26,7 +26,7 @@ export default function ClubCard({name, imgUrl, clubID}) {
           borderTopRadius="6px"
           h="154px"
           w="176px"
-          source={{uri: 'https://picsum.photos/176/154'}}
+          source={require('../assets/clubdp.png')}
           alt="Alternate Text"
         />
         <Box p="8px">

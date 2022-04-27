@@ -1,11 +1,25 @@
-import {Box, Text, ScrollView, Input, View, Center, Button} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import {
+  Box,
+  Text,
+  ScrollView,
+  Input,
+  View,
+  Center,
+  Button,
+  Flex,
+  HStack,
+  VStack,
+} from 'native-base';
+import React, {useState, useEffect, useContext, useRef} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 
 import {messagesbyClub} from '../graphql/queries';
 import {createMessage} from '../graphql/mutations';
 import {onCreateMessage} from '../graphql/subscriptions';
+
+import UserContext from '../context/UserContext';
+import MessageCard from '../../components/MessageCard';
 
 export default function ClubChatScreen() {
   const route = useRoute();
@@ -73,30 +87,41 @@ export default function ClubChatScreen() {
           input: input,
         }),
       );
+      console.log(userData.name);
     } catch (e) {
       console.warn(e);
     }
     setMessage('');
   };
+  const userData = useContext(UserContext);
+  const userName = userData.name;
+  const input = {content: message, clubID: clubID, userName: userName};
 
-  const input = {content: message, clubID: clubID};
+  const scrollViewRef = useRef();
 
   return (
-    <View bg="#fff" flex={1} p="16px">
-      <ScrollView>
-        <Text>ClubChatScreen</Text>
-        <Text>ClubID is {clubID}</Text>
-        {messages &&
-          messages.map(messagemapped => (
-            <Box p="8px" bg="#00bb9e" m="2px" rounded="md" w="auto">
-              {/* <Text></Text> */}
-              <Text>{messagemapped.content}</Text>
-            </Box>
-          ))}
+    <View bg="#fff" flex={1} px="16px">
+      <ScrollView
+        ref={scrollViewRef}
+        onContentSizeChange={() =>
+          scrollViewRef.current.scrollToEnd({animated: true})
+        }>
+        <Flex direction="column">
+          {messages &&
+            messages.map(messagemapped => (
+              <MessageCard
+                author={messagemapped.userName}
+                content={messagemapped.content}
+                userName={userName}
+                key={messagemapped.id}
+              />
+            ))}
+        </Flex>
       </ScrollView>
       <View>
         <Center>
           <Input
+            mt="15px"
             placeholder="Message..."
             bottom="5px"
             size="lg"

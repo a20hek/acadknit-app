@@ -31,7 +31,9 @@ export default function FriendNameSearchScreen() {
   return (
     <Box bg="#fff" flex={1}>
       {userInfo &&
-        userInfo.map(user => <FriendNameSearchCard userData={user} />)}
+        userInfo.map(user => (
+          <FriendNameSearchCard userData={user} key={user.id} />
+        ))}
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-package com.incept;
+package com.acadknit;
 
 import com.facebook.react.ReactActivity;
 

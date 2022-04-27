@@ -21,9 +21,7 @@ type Interest
   users: [User] @manyToMany(relationName: "UserInterests")
 }
 
-type Club
-  @model
-  @auth(rules: [{allow: private, operations: [read, update]}, {allow: owner}]) {
+type Club @model @auth(rules: [{allow: private}]) {
   id: ID
   clubName: String @index(name: "byName", queryField: "clubByName")
   clubDesc: String
@@ -62,4 +60,7 @@ type Invite
   id: ID!
   userID: ID!
   clubID: ID!
+  fromUser: String
+  clubName: String
+  clubDesc: String
 }
