@@ -72,8 +72,8 @@ export default function HomeScreen({navigation}) {
                 onSubmitEditing={handleKeyPress}
               />
             </Center>
-            <Text fontSize="16px" ml="8px">
-              Good Morning, {userData.name}
+            <Text fontSize="16px" ml="24px" my="8px">
+              Good Evening, {userData.name}
             </Text>
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
               {clubData &&

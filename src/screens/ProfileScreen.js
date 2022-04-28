@@ -75,6 +75,7 @@ export default function ProfileScreen({navigation}) {
         <ListButton
           text="Edit Personal Info"
           onPress={() => navigation.navigate('Edit Personal Info', {userData})}
+          key="editpro"
         />
         <ListButton
           text="Edit Interests"
@@ -84,9 +85,15 @@ export default function ProfileScreen({navigation}) {
               userData: userData,
             })
           }
+          key="editint"
         />
 
-        <ListButton text="Log Out" txtclr="#E53935" onPress={signOut} />
+        <ListButton
+          text="Log Out"
+          txtclr="#E53935"
+          onPress={signOut}
+          key="logout"
+        />
       </Box>
     </Box>
   );
