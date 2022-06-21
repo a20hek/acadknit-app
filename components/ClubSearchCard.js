@@ -48,7 +48,6 @@ export default function ClubSearchCard({
       <Text fontSize="16px" color="#4d4d4d" my="8px">
         {clubDesc}
       </Text>
-      <Center></Center>
     </Box>
   );
 }

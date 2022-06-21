@@ -1,15 +1,6 @@
 import {
   Text,
-  Link,
-  HStack,
   Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  VStack,
-  Code,
-  Spinner,
   Badge,
   Box,
   Flex,
@@ -54,41 +45,16 @@ export default function FriendInterestSearchCard({userData}) {
 
   return (
     <>
-      <Box
-        // borderWidth="0.3px"
-        // borderRadius="10px"
-        // //   h="160px"
-        // w="150px"
-        // borderColor="#4d4d4d"
-        px="16px"
-        py="8px"
-        mx="16px"
-        my="8px">
-        {/* <Center> */}
+      <Box px="16px" py="8px" mx="16px" my="8px">
         <Flex flexDir="row" justifyContent="space-between" alignItems="center">
           <Flex>
-            <Text
-              // my="8px"
-              color="#4d4d4d"
-              fontSize="16px"
-              // textAlign="center"
-            >
+            <Text color="#4d4d4d" fontSize="16px">
               {userData?.user?.name}
             </Text>
-            {/* </Center> */}
-            {/* <Center> */}
             <Text color="#999" fontSize="12px" mt="-2px">
               {userData.user.degree}
             </Text>
-            {/* </Center> */}
-            <Flex
-              direction="row"
-              mt="2px"
-              flexWrap="wrap"
-              // justifyContent="center"
-            >
-              {/* {userData.interests &&
-            interests?.map(interest => ( */}
+            <Flex direction="row" mt="2px" flexWrap="wrap">
               <Badge
                 bgColor="#00BB9e"
                 rounded="sm"
@@ -102,7 +68,6 @@ export default function FriendInterestSearchCard({userData}) {
               {/* ))} */}
             </Flex>
           </Flex>
-          {/* <Center> */}
           <Flex>
             <Button
               size="xs"
@@ -111,7 +76,6 @@ export default function FriendInterestSearchCard({userData}) {
               onPress={() => setShowModal(true)}>
               Invite
             </Button>
-            {/* </Center> */}
           </Flex>
         </Flex>
         <Divider my="8px" />

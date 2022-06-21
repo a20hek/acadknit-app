@@ -1,15 +1,6 @@
 import {
   Text,
-  Link,
-  HStack,
   Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  VStack,
-  Code,
-  Spinner,
   Badge,
   Box,
   Flex,
@@ -28,10 +19,8 @@ export default function FriendNameSearchCard({userData}) {
   const fromuserData = useContext(UserContext);
 
   const clubData = fromuserData?.joinedClubs?.items;
-
   const fromUser = fromuserData.name;
   const userID = userData.id;
-  // const input = {userID: userID, fromUser: fromUser};
 
   const [showModal, setShowModal] = useState(false);
 
@@ -56,38 +45,16 @@ export default function FriendNameSearchCard({userData}) {
 
   return (
     <>
-      <Box
-        // borderWidth="0.3px"
-        // borderRadius="10px"
-        //   h="160px"
-        // borderColor="#4d4d4d"
-        px="16px"
-        py="8px"
-        mx="16px"
-        my="8px">
-        {/* <Center> */}
+      <Box px="16px" py="8px" mx="16px" my="8px">
         <Flex flexDir="row" justifyContent="space-between" alignItems="center">
           <Flex>
-            <Text
-              // my="8px"
-              color="#4d4d4d"
-              fontSize="16px"
-              // textAlign="center"
-            >
+            <Text color="#4d4d4d" fontSize="16px">
               {userData.name}
             </Text>
-            {/* </Center> */}
-            {/* <Center> */}
             <Text color="#999" fontSize="12px" mt="-2px">
               {userData.degree}
             </Text>
-            {/* </Center> */}
-            <Flex
-              direction="row"
-              mt="2px"
-              flexWrap="wrap"
-              //  justifyContent="center"
-            >
+            <Flex direction="row" mt="2px" flexWrap="wrap">
               {interests &&
                 interests?.map(interest => (
                   <Badge
@@ -103,7 +70,6 @@ export default function FriendNameSearchCard({userData}) {
                 ))}
             </Flex>
           </Flex>
-          {/* <Center> */}
           <Flex>
             <Button
               size="xs"
@@ -115,8 +81,6 @@ export default function FriendNameSearchCard({userData}) {
           </Flex>
         </Flex>
         <Divider my="8px" />
-
-        {/* </Center> */}
       </Box>
 
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
