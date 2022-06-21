@@ -49,7 +49,6 @@ export default function ClubChatScreen() {
           setMessages([...messages, event.value.data.onCreateMessage]);
         },
       });
-      console.log(messages);
       return () => {
         subscription.unsubscribe();
       };
@@ -69,7 +68,6 @@ export default function ClubChatScreen() {
     );
     const messageData = retriveMessages.data.messagesbyClub.items;
     setMessages(messageData);
-    console.log(messages);
   };
 
   useEffect(() => {
@@ -87,7 +85,6 @@ export default function ClubChatScreen() {
           input: input,
         }),
       );
-      console.log(userData.name);
     } catch (e) {
       console.warn(e);
     }

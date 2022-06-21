@@ -32,9 +32,11 @@ export default function FeedCard({author, image, content}) {
           Mon, 27 Feb 08:00
         </Text>
         <Image source={image} alt="feed1" width="100%" height="auto" />
-        <Text color="#414141">{content}</Text>
+        <Text color="#414141" mt="2px" lineHeight="sm">
+          {content}
+        </Text>
       </Box>
-      <Divider w="90%" />
+      <Divider mt="-2px" w="90%" />
     </>
   );
 }

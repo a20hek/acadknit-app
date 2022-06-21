@@ -42,7 +42,6 @@ export default function FriendsScreen({navigation}) {
 
   useEffect(() => {
     getUserInvites();
-    console.log(invites);
   }, []);
 
   const onAcceptClick = async (clubID, id) => {
@@ -110,8 +109,8 @@ export default function FriendsScreen({navigation}) {
   };
 
   return (
-    <Box w="100%" m="0" px="16px" flex={1} backgroundColor="#fff">
-      <Center>
+    <>
+      <Center bg="#fff">
         <SearchInput
           placeholder="Search by Interests or Name"
           value={query}
@@ -119,21 +118,23 @@ export default function FriendsScreen({navigation}) {
           onSubmitEditing={handleKeyPress}
         />
       </Center>
-      <Heading fontSize="16px" fontWeight="semibold">
-        Club Invites
-      </Heading>
-      {invites &&
-        invites.map(invite => (
-          <InviteCard
-            clubName={invite.clubName}
-            fromUser={invite.fromUser}
-            clubID={invite.clubID}
-            key={invite.id}
-            id={invite.id}
-          />
-        ))}
-      {invites.length == 0 && <Text>You don't have any new invites</Text>}
-      {/* <FriendReq /> */}
-    </Box>
+      <Box w="100%" m="0" px="16px" flex={1} backgroundColor="#fff">
+        <Heading fontSize="16px" fontWeight="semibold">
+          Club Invites
+        </Heading>
+        {invites &&
+          invites.map(invite => (
+            <InviteCard
+              clubName={invite.clubName}
+              fromUser={invite.fromUser}
+              clubID={invite.clubID}
+              key={invite.id}
+              id={invite.id}
+            />
+          ))}
+        {invites.length == 0 && <Text>You don't have any new invites</Text>}
+        {/* <FriendReq /> */}
+      </Box>
+    </>
   );
 }

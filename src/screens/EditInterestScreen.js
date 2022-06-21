@@ -36,7 +36,6 @@ export default function EditInterestScreen() {
       graphqlOperation(listUserInterests, {filter: {userID: {eq: userID}}}),
     );
     setInterestData(interestInfo?.data?.listUserInterests?.items);
-    console.log(interestData);
   }
 
   useEffect(() => {
@@ -56,7 +55,6 @@ export default function EditInterestScreen() {
   };
 
   function onMultiChange() {
-    console.log(selectedInterests);
     return item => setSelectedInterests(xorBy(selectedInterests, [item], 'id'));
   }
 

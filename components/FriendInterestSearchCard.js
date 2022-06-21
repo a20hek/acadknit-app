@@ -108,7 +108,7 @@ export default function FriendInterestSearchCard({userData}) {
                     </Button>
                   </Flex>
                   <Center>
-                    <Divider m="6px" w="90%" />
+                    <Divider m="6px" w="100%" />
                   </Center>
                 </Box>
               ))}

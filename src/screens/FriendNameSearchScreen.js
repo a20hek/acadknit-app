@@ -19,7 +19,6 @@ export default function FriendNameSearchScreen() {
       graphqlOperation(userByName, {name: query}),
     );
     setUserInfo(userData?.data?.userByName?.items);
-    console.log(userData?.data?.userByName?.items);
   }
 
   useEffect(() => {

@@ -17,7 +17,6 @@ export default function ClubSearchScreen({navigation}) {
       graphqlOperation(clubByName, {clubName: searchQuery}),
     );
     setClubInfo(clubData?.data?.clubByName?.items);
-    console.log(clubData?.data?.clubByName?.items);
   }
 
   useEffect(() => {

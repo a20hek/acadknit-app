@@ -27,14 +27,14 @@ export default function ProfileScreen({navigation}) {
   const ListButton = ({text, onPress, txtclr}) => {
     return (
       <>
-        <Divider />
         <Pressable onPress={onPress}>
           <Box w="100%" my="10px">
-            <Text textAlign="left" fontSize="18px" color={txtclr || '#000'}>
+            <Text textAlign="left" fontSize="18px" color={txtclr || '#4d4d4d'}>
               {text}
             </Text>
           </Box>
         </Pressable>
+        <Divider />
       </>
     );
   };
@@ -46,7 +46,8 @@ export default function ProfileScreen({navigation}) {
   return (
     <Box bg="#fff" flex={1} p="32px">
       <Heading
-        fontSize="28px"
+        mt="10%"
+        fontSize="24px"
         fontFamily="body"
         fontWeight={100}
         fontStyle="normal">
@@ -76,7 +77,7 @@ export default function ProfileScreen({navigation}) {
                 fontSize: 10,
                 color: '#fff',
               }}
-              key={interest.interest.interestID}>
+              key={interest.interest.id}>
               {interest.interest.interestName}
             </Badge>
           ))}

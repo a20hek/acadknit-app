@@ -16,8 +16,6 @@ export default function FriendInterestSearchScreen() {
     setInterestInfo(
       interestData?.data?.interestByInterestName?.items[0]?.users?.items,
     );
-    // console.log(userData?.data?.userByName?.items);
-    console.log(interestInfo);
   }
 
   useEffect(() => {

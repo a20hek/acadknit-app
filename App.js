@@ -196,10 +196,24 @@ function ProfileStackScreen() {
       <ProfileStack.Screen
         name="Edit Personal Info"
         component={EditPersonalInfoScreen}
+        options={{
+          headerTitle: () => (
+            <Text fontWeight={500} fontSize="20px" color="#333">
+              Edit Personal Info
+            </Text>
+          ),
+        }}
       />
       <ProfileStack.Screen
         name="Edit Interests"
         component={EditInterestScreen}
+        options={{
+          headerTitle: () => (
+            <Text fontWeight={500} fontSize="20px" color="#333">
+              Edit Interests
+            </Text>
+          ),
+        }}
       />
     </ProfileStack.Navigator>
   );
@@ -218,7 +232,6 @@ function TabNavigator() {
 
         const currentUserInfo = currentUserData.data.getUser;
         setUserData(currentUserInfo);
-        // console.log(currentUserInfo);
       }
     } catch (e) {
       console.warn(e.message);
