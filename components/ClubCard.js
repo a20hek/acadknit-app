@@ -27,10 +27,10 @@ export default function ClubCard({name, imgUrl, clubID}) {
           h="154px"
           w="176px"
           source={require('../assets/clubdp.png')}
-          alt="Alternate Text"
+          alt={name}
         />
         <Box p="8px">
-          <Text fontWeight="medium" fontSize="16px" w="100%">
+          <Text color="#4d4d4d" fontWeight={500} fontSize="16px" w="100%">
             {name}
           </Text>
         </Box>

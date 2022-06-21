@@ -26,13 +26,13 @@ export default function FeedScreen() {
           <FeedCard
             author="Pillai College"
             image={require('../../assets/feed2.jpg')}
-            content="✨ Greetings from PCIE ✨
-            The finals of the Business Plan Competition will be held on 27th April, at the 6th floor Mini Auditorium"
+            content="Greetings from PCIE.
+            The finals of the Business Plan Competition will be held on 27th April, at the 6th floor Mini Auditorium."
           />
           <FeedCard
             image={require('../../assets/feed1.png')}
             author="CSI-PCE"
-            content="✨ Greetings from CSI PCE ✨
+            content="Greetings from CSI PCE.
 
 🌀A hearty welcome, warm enough to encompass you all for our grand commencement of CSI-PCE's Sub-Core Auditions Orientation Program .
 

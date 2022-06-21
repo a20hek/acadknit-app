@@ -1,24 +1,54 @@
-import {Box, Text, Button, Center, Heading} from 'native-base';
+import {Box, Text, Button, Center, Heading, Image, Flex} from 'native-base';
 import React from 'react';
 
-export default function ClubSearchCard({clubName, clubDesc, memberCount}) {
+export default function ClubSearchCard({
+  clubName,
+  clubDesc,
+  memberCount,
+  clubID,
+}) {
   return (
     <Box
       mx="5%"
       bg="#fff"
       p="8px"
       my="6px"
-      borderColor="#333"
-      borderWidth="0.4px"
+      borderWidth="0.2px"
+      borderColor="#666666"
       borderRadius="8px">
-      <Heading fontSize="20px">{clubName}</Heading>
-      <Text color="#999">27 Members</Text>
-      <Text fontSize="16px">{clubDesc}</Text>
-      <Center>
-        <Button w="40%" bg="#00bb9e" _text={{color: '#fff'}}>
-          Join
-        </Button>
-      </Center>
+      <Flex flexDir="row" justifyContent="space-between">
+        <Flex flexDir="row" alignItems="center">
+          <Image
+            borderRadius="6px"
+            h="42px"
+            w="42px"
+            alt={clubName}
+            source={require('../assets/clubdp.png')}
+          />
+          <Text color="#333" fontWeight={500} fontSize="18px" mx="10px">
+            {clubName}
+          </Text>
+        </Flex>
+        <Flex>
+          <Button
+            w="80px"
+            height="40px"
+            bg="#00bb9e"
+            _text={{
+              color: '#fff',
+              fontWeight: '600',
+              margin: '0px',
+              padding: '0px',
+            }}>
+            Join
+          </Button>
+        </Flex>
+      </Flex>
+      {/* <Text color="#999">27 Members</Text> */}
+      <Text fontSize="16px" color="#4d4d4d" my="8px">
+        {clubDesc}
+      </Text>
+      <Center></Center>
     </Box>
   );
 }

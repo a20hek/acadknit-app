@@ -55,49 +55,68 @@ export default function FriendInterestSearchCard({userData}) {
   return (
     <>
       <Box
-        borderWidth="0.3px"
-        borderRadius="10px"
-        //   h="160px"
-        w="150px"
-        borderColor="#4d4d4d"
-        p="8px"
-        m="16px">
-        <Center>
-          <Text my="8px" color="#4d4d4d" fontSize="16px" textAlign="center">
-            {userData?.user?.name}
-          </Text>
-        </Center>
-        <Center>
-          <Text color="#999" fontSize="12px">
-            {userData.user.degree}
-          </Text>
-        </Center>
-        <Flex direction="row" mt="2px" flexWrap="wrap" justifyContent="center">
-          {/* {userData.interests &&
+        // borderWidth="0.3px"
+        // borderRadius="10px"
+        // //   h="160px"
+        // w="150px"
+        // borderColor="#4d4d4d"
+        px="16px"
+        py="8px"
+        mx="16px"
+        my="8px">
+        {/* <Center> */}
+        <Flex flexDir="row" justifyContent="space-between" alignItems="center">
+          <Flex>
+            <Text
+              // my="8px"
+              color="#4d4d4d"
+              fontSize="16px"
+              // textAlign="center"
+            >
+              {userData?.user?.name}
+            </Text>
+            {/* </Center> */}
+            {/* <Center> */}
+            <Text color="#999" fontSize="12px" mt="-2px">
+              {userData.user.degree}
+            </Text>
+            {/* </Center> */}
+            <Flex
+              direction="row"
+              mt="2px"
+              flexWrap="wrap"
+              // justifyContent="center"
+            >
+              {/* {userData.interests &&
             interests?.map(interest => ( */}
-          <Badge
-            bgColor="#00BB9e"
-            rounded="sm"
-            w="auto"
-            _text={{
-              fontSize: 10,
-              color: '#fff',
-            }}>
-            {userData.interest.interestName}
-          </Badge>
-          {/* ))} */}
+              <Badge
+                bgColor="#00BB9e"
+                rounded="sm"
+                w="auto"
+                _text={{
+                  fontSize: 10,
+                  color: '#fff',
+                }}>
+                {userData.interest.interestName}
+              </Badge>
+              {/* ))} */}
+            </Flex>
+          </Flex>
+          {/* <Center> */}
+          <Flex>
+            <Button
+              size="xs"
+              bg="#A475C0"
+              _text={{fontSize: '12px', fontWeight: 'bold'}}
+              onPress={() => setShowModal(true)}>
+              Invite
+            </Button>
+            {/* </Center> */}
+          </Flex>
         </Flex>
-        <Center>
-          <Button
-            size="xs"
-            bg="#A475C0"
-            _text={{fontSize: '12px', fontWeight: 'bold'}}
-            onPress={() => setShowModal(true)}
-            w="70%">
-            Invite
-          </Button>
-        </Center>
+        <Divider my="8px" />
       </Box>
+
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />

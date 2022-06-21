@@ -41,6 +41,7 @@
     "react-native-share": "^7.3.6",
     "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^3.1.1",
+    "react-query": "^3.39.1",
     "regjsparser": "^0.8.4",
     "sane": "^5.0.1"
   },

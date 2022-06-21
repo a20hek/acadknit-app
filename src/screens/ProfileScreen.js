@@ -12,6 +12,7 @@ import {
   FlatList,
   Badge,
   Pressable,
+  Divider,
 } from 'native-base';
 import React, {useState, useEffect, useContext} from 'react';
 import {Alert} from 'react-native';
@@ -25,13 +26,16 @@ export default function ProfileScreen({navigation}) {
 
   const ListButton = ({text, onPress, txtclr}) => {
     return (
-      <Pressable onPress={onPress}>
-        <Box w="100%" my="10px">
-          <Text textAlign="left" fontSize="18px" color={txtclr || '#000'}>
-            {text}
-          </Text>
-        </Box>
-      </Pressable>
+      <>
+        <Divider />
+        <Pressable onPress={onPress}>
+          <Box w="100%" my="10px">
+            <Text textAlign="left" fontSize="18px" color={txtclr || '#000'}>
+              {text}
+            </Text>
+          </Box>
+        </Pressable>
+      </>
     );
   };
 
@@ -41,7 +45,13 @@ export default function ProfileScreen({navigation}) {
 
   return (
     <Box bg="#fff" flex={1} p="32px">
-      <Heading fontSize="28px">{userData.name}</Heading>
+      <Heading
+        fontSize="28px"
+        fontFamily="body"
+        fontWeight={100}
+        fontStyle="normal">
+        {userData.name}
+      </Heading>
       <Text fontSize="16px" mt="8px">
         {userData.college}
       </Text>
@@ -65,7 +75,8 @@ export default function ProfileScreen({navigation}) {
               _text={{
                 fontSize: 10,
                 color: '#fff',
-              }}>
+              }}
+              key={interest.interest.interestID}>
               {interest.interest.interestName}
             </Badge>
           ))}

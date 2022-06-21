@@ -606,7 +606,6 @@ export const clubByName = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

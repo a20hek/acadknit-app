@@ -57,49 +57,68 @@ export default function FriendNameSearchCard({userData}) {
   return (
     <>
       <Box
-        borderWidth="0.3px"
-        borderRadius="10px"
+        // borderWidth="0.3px"
+        // borderRadius="10px"
         //   h="160px"
-        w="150px"
-        borderColor="#4d4d4d"
-        p="8px"
-        m="16px">
-        <Center>
-          <Text my="8px" color="#4d4d4d" fontSize="16px" textAlign="center">
-            {userData.name}
-          </Text>
-        </Center>
-        <Center>
-          <Text color="#999" fontSize="12px">
-            {userData.degree}
-          </Text>
-        </Center>
-        <Flex direction="row" mt="2px" flexWrap="wrap" justifyContent="center">
-          {interests &&
-            interests?.map(interest => (
-              <Badge
-                bgColor="#00BB9e"
-                rounded="sm"
-                w="auto"
-                _text={{
-                  fontSize: 10,
-                  color: '#fff',
-                }}>
-                {interest.interest.interestName}
-              </Badge>
-            ))}
+        // borderColor="#4d4d4d"
+        px="16px"
+        py="8px"
+        mx="16px"
+        my="8px">
+        {/* <Center> */}
+        <Flex flexDir="row" justifyContent="space-between" alignItems="center">
+          <Flex>
+            <Text
+              // my="8px"
+              color="#4d4d4d"
+              fontSize="16px"
+              // textAlign="center"
+            >
+              {userData.name}
+            </Text>
+            {/* </Center> */}
+            {/* <Center> */}
+            <Text color="#999" fontSize="12px" mt="-2px">
+              {userData.degree}
+            </Text>
+            {/* </Center> */}
+            <Flex
+              direction="row"
+              mt="2px"
+              flexWrap="wrap"
+              //  justifyContent="center"
+            >
+              {interests &&
+                interests?.map(interest => (
+                  <Badge
+                    bgColor="#00BB9e"
+                    rounded="sm"
+                    w="auto"
+                    _text={{
+                      fontSize: 10,
+                      color: '#fff',
+                    }}>
+                    {interest.interest.interestName}
+                  </Badge>
+                ))}
+            </Flex>
+          </Flex>
+          {/* <Center> */}
+          <Flex>
+            <Button
+              size="xs"
+              bg="#A475C0"
+              _text={{fontSize: '12px', fontWeight: 'bold'}}
+              onPress={() => setShowModal(true)}>
+              Invite
+            </Button>
+          </Flex>
         </Flex>
-        <Center>
-          <Button
-            size="xs"
-            bg="#A475C0"
-            _text={{fontSize: '12px', fontWeight: 'bold'}}
-            onPress={() => setShowModal(true)}
-            w="70%">
-            Invite
-          </Button>
-        </Center>
+        <Divider my="8px" />
+
+        {/* </Center> */}
       </Box>
+
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
@@ -127,7 +146,7 @@ export default function FriendNameSearchCard({userData}) {
                     </Button>
                   </Flex>
                   <Center>
-                    <Divider m="6px" w="90%" />
+                    <Divider m="6px" w="100%" />
                   </Center>
                 </Box>
               ))}

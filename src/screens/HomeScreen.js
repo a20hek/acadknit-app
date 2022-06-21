@@ -1,16 +1,4 @@
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Input,
-  Flex,
-  Box,
-  Button,
-  ScrollView,
-  View,
-} from 'native-base';
+import {Text, Center, Flex, Box, Button, ScrollView, View} from 'native-base';
 import React, {useContext, useEffect, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
@@ -72,9 +60,9 @@ export default function HomeScreen({navigation}) {
                 onSubmitEditing={handleKeyPress}
               />
             </Center>
-            <Text fontSize="16px" ml="24px" my="8px">
+            {/* <Text fontSize="16px" ml="24px" my="8px">
               Good Evening, {userData.name}
-            </Text>
+            </Text> */}
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
               {clubData &&
                 clubData.map(clubInfo => (

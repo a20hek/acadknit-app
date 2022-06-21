@@ -20,6 +20,7 @@ import {
   Code,
   Spinner,
   Box,
+  extendTheme,
 } from 'native-base';
 
 import Amplify from 'aws-amplify';
@@ -91,14 +92,40 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name="Club Search"
         component={ClubSearchScreen}
-        // options={{headerShadowVisible: false}}
+        options={{
+          // headerTitleStyle: {
+          //   fontFamily: 'Inter',
+          // },
+          // headerTintColor: '#333',
+          headerTitle: () => (
+            <Text fontWeight={500} fontSize="20px" color="#333">
+              Club Search
+            </Text>
+          ),
+        }}
       />
       <HomeStack.Screen
         name="ClubChat"
         component={ClubChatScreen}
-        options={({route}) => ({title: route.params.name})}
+        options={({route}) => ({
+          headerTitle: () => (
+            <Text fontWeight={500} fontSize="20px" color="#333">
+              {route.params.name}
+            </Text>
+          ),
+        })}
       />
-      <HomeStack.Screen name="Add Club" component={AddClubScreen} />
+      <HomeStack.Screen
+        name="Add Club"
+        component={AddClubScreen}
+        options={{
+          headerTitle: () => (
+            <Text fontWeight={500} fontSize="20px" color="#333">
+              Add Club
+            </Text>
+          ),
+        }}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -229,7 +256,11 @@ function TabNavigator() {
           component={FriendStackScreen}
           options={{headerShown: false}}
         />
-        <Tab.Screen name="Feed" component={FeedScreen} />
+        <Tab.Screen
+          name="Feed"
+          component={FeedScreen}
+          options={{headerShown: false}}
+        />
         <Tab.Screen
           name="ProfileTab"
           component={ProfileStackScreen}
@@ -304,9 +335,68 @@ function MyNavigator() {
   );
 }
 
+const theme = extendTheme({
+  fontConfig: {
+    Inter: {
+      200: {
+        normal: 'Inter-ExtraLight',
+      },
+      300: {
+        normal: 'Inter-Light',
+      },
+      400: {
+        normal: 'Inter-Regular',
+      },
+      500: {
+        normal: 'Inter-Medium',
+      },
+      600: {
+        normal: 'Inter-SemiBold',
+      },
+      700: {
+        normal: 'Inter-Bold',
+      },
+      800: {
+        normal: 'Inter-ExtraBold',
+      },
+    },
+    WorkSans: {
+      100: {
+        normal: 'WorkSans-Thin',
+      },
+      200: {
+        normal: 'WorkSans-ExtraLight',
+      },
+      300: {
+        normal: 'WorkSans-Light',
+      },
+      400: {
+        normal: 'WorkSans-Regular',
+      },
+      500: {
+        normal: 'WorkSans-Medium',
+      },
+      600: {
+        normal: 'WorkSans-SemiBold',
+      },
+      700: {
+        normal: 'WorkSans-Bold',
+      },
+      800: {
+        normal: 'WorkSans-ExtraBold',
+      },
+    },
+  },
+  fonts: {
+    heading: 'WorkSans',
+    body: 'Inter',
+    mono: 'Inter',
+  },
+});
+
 export default function App() {
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={theme}>
       <MyNavigator />
     </NativeBaseProvider>
   );

@@ -12,12 +12,6 @@ export default function ClubSearchScreen({navigation}) {
   const [input, setInput] = useState(route?.params?.searchQuery);
   const [clubInfo, setClubInfo] = useState([]);
 
-  useEffect(() => {
-    if (route?.params?.searchQuery) {
-      searchClubs(input);
-    }
-  }, []);
-
   async function searchClubs(searchQuery) {
     const clubData = await API.graphql(
       graphqlOperation(clubByName, {clubName: searchQuery}),
@@ -25,6 +19,12 @@ export default function ClubSearchScreen({navigation}) {
     setClubInfo(clubData?.data?.clubByName?.items);
     console.log(clubData?.data?.clubByName?.items);
   }
+
+  useEffect(() => {
+    if (route?.params?.searchQuery) {
+      searchClubs(input);
+    }
+  }, []);
 
   return (
     <Box flex={1} bg="#fff">

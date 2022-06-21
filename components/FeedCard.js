@@ -16,21 +16,25 @@ import {
   FlatList,
   Container,
   Badge,
+  Divider,
 } from 'native-base';
 import {Image} from 'react-native';
 import React from 'react';
 
 export default function FeedCard({author, image, content}) {
   return (
-    <Box w="90%" my="16px">
-      <Text fontWeight="bold" fontSize="18px">
-        {author}
-      </Text>
-      <Text fontSize="14px" color="#999">
-        Mon, 27 Feb 08:00
-      </Text>
-      <Image source={image} alt="feed1" width="100%" height="auto" />
-      <Text color="#414141">{content}</Text>
-    </Box>
+    <>
+      <Box my="16px" mx="32px">
+        <Text fontWeight={500} fontSize="18px">
+          {author}
+        </Text>
+        <Text fontSize="14px" color="#999" mb="8px" mt="-4px">
+          Mon, 27 Feb 08:00
+        </Text>
+        <Image source={image} alt="feed1" width="100%" height="auto" />
+        <Text color="#414141">{content}</Text>
+      </Box>
+      <Divider w="90%" />
+    </>
   );
 }
