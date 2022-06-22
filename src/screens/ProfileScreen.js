@@ -1,23 +1,6 @@
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Input,
-  Flex,
-  Box,
-  Button,
-  ScrollView,
-  FlatList,
-  Badge,
-  Pressable,
-  Divider,
-} from 'native-base';
-import React, {useState, useEffect, useContext} from 'react';
-import {Alert} from 'react-native';
-import {getUser} from '../graphql/queries';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {Text, Heading, Flex, Box, Badge, Pressable, Divider} from 'native-base';
+import React, {useContext} from 'react';
+import {Auth} from 'aws-amplify';
 import UserContext from '../context/UserContext';
 
 export default function ProfileScreen({navigation}) {
@@ -57,20 +40,10 @@ export default function ProfileScreen({navigation}) {
         {userData.college}
       </Text>
       <Flex direction="row" mt="8px" flexWrap="wrap">
-        {/* <HStack
-          space={{
-            base: 2,
-            sm: 4,
-          }}
-          mx={{
-            base: 'auto',
-            md: 0,
-          }}> */}
         {interestData &&
           interestData.map(interest => (
             <Badge
               bgColor="#A475C0"
-              // w="50px"
               rounded="sm"
               w="auto"
               _text={{
@@ -81,7 +54,6 @@ export default function ProfileScreen({navigation}) {
               {interest.interest.interestName}
             </Badge>
           ))}
-        {/* </HStack> */}
       </Flex>
       <Box mt="32px">
         <ListButton

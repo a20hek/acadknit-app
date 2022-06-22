@@ -1,7 +1,6 @@
-import {Box, Text} from 'native-base';
+import {Box} from 'native-base';
 import React, {useState, useEffect, useContext} from 'react';
 import {userByName} from '../graphql/queries';
-// import {useRoute} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
 import SearchQueryContext from '../context/SearchQueryContext';
 import FriendNameSearchCard from '../../components/FriendNameSearchCard';

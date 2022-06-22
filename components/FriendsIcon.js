@@ -1,6 +1,6 @@
 import React from 'react';
 import {Icon} from 'native-base';
-import {G, Path, Defs, ClipPath, Rect} from 'react-native-svg';
+import {Path} from 'react-native-svg';
 
 const FriendsIcon = ({color}) => {
   return (

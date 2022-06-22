@@ -6,18 +6,12 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, createContext, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
-  Link,
   HStack,
-  Center,
   Heading,
-  Switch,
-  useColorMode,
   NativeBaseProvider,
-  VStack,
-  Code,
   Spinner,
   Box,
   extendTheme,
@@ -79,8 +73,6 @@ const FriendStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-// const SearchQueryContext = createContext(null);
-
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
@@ -93,10 +85,6 @@ function HomeStackScreen() {
         name="Club Search"
         component={ClubSearchScreen}
         options={{
-          // headerTitleStyle: {
-          //   fontFamily: 'Inter',
-          // },
-          // headerTintColor: '#333',
           headerTitle: () => (
             <Text fontWeight={500} fontSize="20px" color="#333">
               Club Search
@@ -149,7 +137,6 @@ function FriendStackScreen() {
                 placeholder="Search.."
                 value={searchQuery}
                 onChangeText={text => setSearchQuery(text)}
-                // onSubmitEditing={() => searchClubs(input)}
                 {...props}
               />
             ),

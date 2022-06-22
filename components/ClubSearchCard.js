@@ -1,4 +1,4 @@
-import {Box, Text, Button, Center, Heading, Image, Flex} from 'native-base';
+import {Box, Text, Button, Image, Flex} from 'native-base';
 import React from 'react';
 
 export default function ClubSearchCard({
@@ -44,7 +44,6 @@ export default function ClubSearchCard({
           </Button>
         </Flex>
       </Flex>
-      {/* <Text color="#999">27 Members</Text> */}
       <Text fontSize="16px" color="#4d4d4d" my="8px">
         {clubDesc}
       </Text>

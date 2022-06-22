@@ -6,7 +6,7 @@ import {Box, Input, FormControl, VStack, Button} from 'native-base';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {createUser} from '../graphql/mutations';
 
-export default function ConfirmEmailScreen({navigation}) {
+export default function ConfirmEmailScreen() {
   const route = useRoute();
   const {
     control,

@@ -8,9 +8,8 @@ import {
   Select,
   CheckIcon,
   Heading,
-  AddIcon,
 } from 'native-base';
-import React, {useState} from 'react';
+import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {Auth} from 'aws-amplify';
 import {Alert} from 'react-native';
@@ -178,15 +177,6 @@ export default function RegistrationScreen({navigation}) {
             </Text>
           )}
         </FormControl>
-        {/* <Button
-          size="sm"
-          leftIcon={<AddIcon size="12px" />}
-          variant="outline"
-          w="100px"
-          mt="24px">
-          Add Interest
-        </Button> */}
-
         <Button
           bg="#00B633"
           _text={{fontSize: 18, color: '#fff'}}

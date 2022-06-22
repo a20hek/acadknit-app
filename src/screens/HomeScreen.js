@@ -1,10 +1,8 @@
 import {Text, Center, Flex, Box, Button, ScrollView, View} from 'native-base';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import PlusIcon from '../../components/PlusIcon';
 import ClubCard from '../../components/ClubCard';
-import {Alert} from 'react-native';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
-import {getUser} from '../graphql/queries';
+
 import SearchInput from '../../components/SearchInput';
 import UserContext from '../context/UserContext';
 
@@ -60,9 +58,6 @@ export default function HomeScreen({navigation}) {
                 onSubmitEditing={handleKeyPress}
               />
             </Center>
-            {/* <Text fontSize="16px" ml="24px" my="8px">
-              Good Evening, {userData.name}
-            </Text> */}
             <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
               {clubData &&
                 clubData.map(clubInfo => (

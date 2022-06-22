@@ -1,6 +1,6 @@
 import React from 'react';
 import {Icon} from 'native-base';
-import {G, Path, Defs, ClipPath, Rect, Circle} from 'react-native-svg';
+import {Path, Circle} from 'react-native-svg';
 
 const PlusIcon = () => {
   return (

@@ -1,23 +1,4 @@
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Code,
-  Flex,
-  Box,
-  Button,
-  FlatList,
-  Container,
-  Badge,
-  Divider,
-} from 'native-base';
+import {Text, Box, Divider} from 'native-base';
 import {Image} from 'react-native';
 import React from 'react';
 

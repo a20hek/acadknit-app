@@ -1,12 +1,12 @@
-import {Box, Text, Input, Center} from 'native-base';
+import {Box, Center} from 'native-base';
 import React, {useState, useEffect} from 'react';
 import {API, graphqlOperation} from 'aws-amplify';
-import {getUser, clubByName} from '../graphql/queries';
+import {clubByName} from '../graphql/queries';
 import {useRoute} from '@react-navigation/native';
 import ClubSearchCard from '../../components/ClubSearchCard';
 import SearchInput from '../../components/SearchInput';
 
-export default function ClubSearchScreen({navigation}) {
+export default function ClubSearchScreen() {
   const route = useRoute();
 
   const [input, setInput] = useState(route?.params?.searchQuery);
@@ -28,16 +28,6 @@ export default function ClubSearchScreen({navigation}) {
   return (
     <Box flex={1} bg="#fff">
       <Center>
-        {/* <Input
-          type="search"
-          w="90%"
-          h="32px"
-          placeholder="Search for clubs"
-          value={input}
-          onChangeText={text => setInput(text)}
-          returnKeyType="go"
-          onSubmitEditing={() => searchClubs(input)}
-        /> */}
         <SearchInput
           value={input}
           onSubmitEditing={() => searchClubs(input)}

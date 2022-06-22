@@ -1,5 +1,4 @@
-import {Box, Text, Button, Icon, Divider, Flex} from 'native-base';
-import {Path} from 'react-native-svg';
+import {Box, Text, Button} from 'native-base';
 import BlackLogo from '../../components/BlackLogo';
 
 import React from 'react';

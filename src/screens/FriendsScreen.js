@@ -1,19 +1,9 @@
-import {
-  Box,
-  Center,
-  Container,
-  Text,
-  Flex,
-  Button,
-  Heading,
-  CloseIcon,
-} from 'native-base';
+import {Box, Center, Text, Flex, Button, Heading, CloseIcon} from 'native-base';
 import React, {useState, useEffect, useContext} from 'react';
-import FriendReq from '../../components/FriendReq';
 import SearchInput from '../../components/SearchInput';
 import SearchQueryContext from '../context/SearchQueryContext';
 import UserContext from '../context/UserContext';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import {listInvites} from '../graphql/queries';
 import {createUserClubs, deleteInvite} from '../graphql/mutations';
 
@@ -133,8 +123,7 @@ export default function FriendsScreen({navigation}) {
               id={invite.id}
             />
           ))}
-        {invites.length == 0 && <Text>You don't have any new invites</Text>}
-        {/* <FriendReq /> */}
+        {invites.length === 0 && <Text>You don't have any new invites</Text>}
       </Box>
     </>
   );

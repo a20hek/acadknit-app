@@ -8,9 +8,9 @@ import {
   Modal,
   Divider,
 } from 'native-base';
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 
-import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import {createInvite} from '../src/graphql/mutations';
 import UserContext from '../src/context/UserContext';
 

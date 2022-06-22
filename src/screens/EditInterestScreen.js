@@ -1,24 +1,10 @@
-import {
-  View,
-  Text,
-  Box,
-  Center,
-  Container,
-  Flex,
-  Button,
-  Input,
-  VStack,
-  FormControl,
-  useToast,
-  Badge,
-  CloseIcon,
-  Pressable,
-} from 'native-base';
+import {View, Text, Box, Center, Flex, Button, CloseIcon} from 'native-base';
 import React, {useState, useEffect} from 'react';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import {useRoute} from '@react-navigation/native';
 import {listUserInterests, listInterests} from '../graphql/queries';
 import {createUserInterests, deleteUserInterests} from '../graphql/mutations';
+import {Alert} from 'react-native';
 
 import SelectBox from 'react-native-multi-selectbox';
 import {xorBy} from 'lodash';
@@ -156,13 +142,6 @@ export default function EditInterestScreen() {
           _text={{fontSize: 18, color: '#fff'}}>
           Save
         </Button>
-        {/* <Button
-          mt="15%"
-          bg="#00bb9e"
-          _text={{fontSize: 18, color: '#fff'}}
-          onPress={handleSubmit(updateCredentials)}>
-          Submit
-        </Button> */}
       </Center>
     </View>
   );

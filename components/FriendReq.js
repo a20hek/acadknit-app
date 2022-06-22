@@ -1,23 +1,4 @@
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Code,
-  Flex,
-  Image,
-  Box,
-  Button,
-  FlatList,
-  Container,
-  Badge,
-} from 'native-base';
+import {Text, Flex, Box} from 'native-base';
 import React from 'react';
 import FriendAcceptIcon from './FriendAcceptIcon';
 import FriendRejectIcon from './FriendRejectIcon';

@@ -12,7 +12,7 @@ import {useForm, Controller} from 'react-hook-form';
 import {Auth} from 'aws-amplify';
 import {Alert} from 'react-native';
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen() {
   const {
     control,
     handleSubmit,

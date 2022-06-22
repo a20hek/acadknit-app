@@ -1,4 +1,4 @@
-import {Box, SimpleGrid, Text, Flex, Center} from 'native-base';
+import {Box} from 'native-base';
 import React, {useState, useEffect, useContext} from 'react';
 import {interestByInterestName} from '../graphql/queries';
 import {API, graphqlOperation} from 'aws-amplify';

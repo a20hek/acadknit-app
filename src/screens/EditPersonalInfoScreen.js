@@ -1,29 +1,21 @@
 import {
   Box,
-  Center,
-  Container,
   Text,
-  Flex,
   Button,
   Input,
   VStack,
   FormControl,
   useToast,
 } from 'native-base';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useRoute} from '@react-navigation/native';
-import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import {useForm, Controller} from 'react-hook-form';
 import {updateUser} from '../graphql/mutations';
 import {Alert} from 'react-native';
 
 export default function EditPersonalInfoScreen({navigation}) {
   const route = useRoute();
-
-  // const [name, setName] = useState(route?.params?.userData.name);
-  // const [year, setYear] = useState(route?.params?.userData.year);
-  // const [degree, setDegree] = useState(route?.params?.userData.degree);
-  // const [email, setEmail] = useState(route?.params?.userData.email);
   const userID = route?.params?.userData.id;
   const toast = useToast();
 

@@ -1,24 +1,8 @@
-import {
-  Box,
-  Text,
-  Flex,
-  Container,
-  ScrollView,
-  Heading,
-  View,
-} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import {Flex, ScrollView, View} from 'native-base';
+import React from 'react';
 import FeedCard from '../../components/FeedCard';
 
 export default function FeedScreen() {
-  // useEffect(() => {
-  //   first
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-
   return (
     <View bg="#fff" flex={1}>
       <ScrollView>
@@ -36,14 +20,13 @@ export default function FeedScreen() {
 
 🌀A hearty welcome, warm enough to encompass you all for our grand commencement of CSI-PCE's Sub-Core Auditions Orientation Program .
 
-📈This could be your first step to build your own identity, interact with new people, gain practical knowledge and learn from their experience. 
+📈This could be your first step to build your own identity, interact with new people, gain practical knowledge and learn from their experience.
 
 📝Please note that the orientation is open for all .
 
 🗓️ Date : 22nd Sept, 2021
 ⏰ Time : 5:30 PM"
           />
-          {/* <FeedCard author="AESA MESA" /> */}
         </Flex>
       </ScrollView>
     </View>
