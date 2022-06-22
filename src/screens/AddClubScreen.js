@@ -1,14 +1,5 @@
-import {Auth, API, graphqlOperation} from 'aws-amplify';
-import {
-  Box,
-  Input,
-  FormControl,
-  VStack,
-  Button,
-  Text,
-  Heading,
-  TextArea,
-} from 'native-base';
+import {API, graphqlOperation} from 'aws-amplify';
+import {Box, Input, FormControl, VStack, Button, Text} from 'native-base';
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {createClub, createUserClubs} from '../graphql/mutations';
@@ -55,7 +46,7 @@ export default function AddClubScreen({navigation}) {
     <Box bg="#fff" flex={1} alignItems="center">
       <VStack width="80%">
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="10%" mb="-0.5px">
             Club Name
           </FormControl.Label>
           <Controller
@@ -66,7 +57,7 @@ export default function AddClubScreen({navigation}) {
             render={({field: {onChange, onBlur, value}}) => (
               <Input
                 size="lg"
-                placeholder="Club Name"
+                placeholder="Zugzwang Club"
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
@@ -82,7 +73,7 @@ export default function AddClubScreen({navigation}) {
           )}
         </FormControl>
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="10%" mb="-0.5px">
             Club Description
           </FormControl.Label>
           <Controller
@@ -96,6 +87,7 @@ export default function AddClubScreen({navigation}) {
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
+                placeholder="Here at Zugzwang Club, we.."
                 variant="underlined"
               />
             )}
@@ -108,7 +100,7 @@ export default function AddClubScreen({navigation}) {
           )}
         </FormControl>
         <Button
-          bg="#00B633"
+          bg="#00bb9e"
           _text={{fontSize: 18, color: '#fff'}}
           top="40%"
           onPress={handleSubmit(onCreateClub)}>

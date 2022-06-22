@@ -7,12 +7,9 @@ import SearchQueryContext from '../context/SearchQueryContext';
 import FriendNameSearchCard from '../../components/FriendNameSearchCard';
 
 export default function FriendNameSearchScreen() {
-  // const route = useRoute();
   const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
-  // const query = route?.params?.searchQuery;
 
   const [userInfo, setUserInfo] = useState([]);
-  // const [input, setInput] = useState(route?.params?.query);
 
   async function searchbyName(query) {
     const userData = await API.graphql(

@@ -45,8 +45,8 @@ export default function FriendInterestSearchCard({userData}) {
 
   return (
     <>
-      <Box px="16px" py="8px" mx="16px" my="8px">
-        <Flex flexDir="row" justifyContent="space-between" alignItems="center">
+      <Box px="16px" mx="16px" my="8px">
+        <Flex flexDir="row" alignItems="center" justifyContent="space-between">
           <Flex>
             <Text color="#4d4d4d" fontSize="16px">
               {userData?.user?.name}
@@ -54,9 +54,9 @@ export default function FriendInterestSearchCard({userData}) {
             <Text color="#999" fontSize="12px" mt="-2px">
               {userData.user.degree}
             </Text>
-            <Flex direction="row" mt="2px" flexWrap="wrap">
+            <Flex direction="row" mt="2px">
               <Badge
-                bgColor="#00BB9e"
+                bgColor="#A475C0"
                 rounded="sm"
                 w="auto"
                 _text={{
@@ -71,20 +71,20 @@ export default function FriendInterestSearchCard({userData}) {
           <Flex>
             <Button
               size="xs"
-              bg="#A475C0"
+              bg="#00ab91"
               _text={{fontSize: '12px', fontWeight: 'bold'}}
               onPress={() => setShowModal(true)}>
               Invite
             </Button>
           </Flex>
         </Flex>
-        <Divider my="8px" />
+        <Divider mt="16px" />
       </Box>
 
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
-          <Modal.Header>Send Invite</Modal.Header>
+          <Modal.Header>Choose Club</Modal.Header>
           <Modal.Body>
             {clubData &&
               clubData.map(clubInfo => (
@@ -96,6 +96,7 @@ export default function FriendInterestSearchCard({userData}) {
                     <Text>{clubInfo.club.clubName}</Text>
                     <Button
                       size="xs"
+                      bg="#00ab91"
                       _text={{fontSize: '12px', fontWeight: 'bold'}}
                       onPress={() => {
                         onSendInvite(

@@ -96,6 +96,7 @@ export default function FriendsScreen({navigation}) {
               height="36px"
               py="4px"
               px="8px"
+              bg="#00AB91"
               onPress={() => {
                 onAcceptClick(clubID, id);
               }}>

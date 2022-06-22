@@ -26,12 +26,10 @@ export default function FriendInterestSearchScreen() {
 
   return (
     <Box bg="#fff" flex={1}>
-      <Flex flexDirection="row" flexWrap="wrap" justifyContent="center">
-        {interestInfo &&
-          interestInfo.map(user => (
-            <FriendInterestSearchCard userData={user} key={user.user.id} />
-          ))}
-      </Flex>
+      {interestInfo &&
+        interestInfo.map(user => (
+          <FriendInterestSearchCard userData={user} key={user.user.id} />
+        ))}
     </Box>
   );
 }

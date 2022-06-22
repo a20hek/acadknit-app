@@ -58,13 +58,14 @@ export default function FriendNameSearchCard({userData}) {
               {interests &&
                 interests?.map(interest => (
                   <Badge
-                    bgColor="#00BB9e"
+                    bgColor="#A475C0"
                     rounded="sm"
                     w="auto"
                     _text={{
                       fontSize: 10,
                       color: '#fff',
-                    }}>
+                    }}
+                    key={interest.interest.id}>
                     {interest.interest.interestName}
                   </Badge>
                 ))}
@@ -73,7 +74,7 @@ export default function FriendNameSearchCard({userData}) {
           <Flex>
             <Button
               size="xs"
-              bg="#A475C0"
+              bg="#00AB91"
               _text={{fontSize: '12px', fontWeight: 'bold'}}
               onPress={() => setShowModal(true)}>
               Invite
@@ -86,7 +87,7 @@ export default function FriendNameSearchCard({userData}) {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Modal.Content maxWidth="400px">
           <Modal.CloseButton />
-          <Modal.Header>Send Invite</Modal.Header>
+          <Modal.Header>Choose Club </Modal.Header>
           <Modal.Body>
             {clubData &&
               clubData.map(clubInfo => (
@@ -98,6 +99,7 @@ export default function FriendNameSearchCard({userData}) {
                     <Text>{clubInfo.club.clubName}</Text>
                     <Button
                       size="xs"
+                      bg="#00AB91"
                       _text={{fontSize: '12px', fontWeight: 'bold'}}
                       onPress={() => {
                         onSendInvite(

@@ -73,7 +73,7 @@ export default function EditPersonalInfoScreen({navigation}) {
     <Box bg="#fff" flex={1} alignItems="center">
       <VStack width="80%">
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="8%" mb="-0.5px">
             Name
           </FormControl.Label>
           <Controller
@@ -104,7 +104,7 @@ export default function EditPersonalInfoScreen({navigation}) {
         </FormControl>
 
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="8%" mb="-0.5px">
             College email ID
           </FormControl.Label>
           <Controller
@@ -136,7 +136,7 @@ export default function EditPersonalInfoScreen({navigation}) {
         </FormControl>
 
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="8%" mb="-0.5px">
             Degree
           </FormControl.Label>
           <Controller
@@ -167,7 +167,7 @@ export default function EditPersonalInfoScreen({navigation}) {
         </FormControl>
 
         <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
+          <FormControl.Label mt="8%" mb="-0.5px">
             Year
           </FormControl.Label>
           <Controller
@@ -196,7 +196,13 @@ export default function EditPersonalInfoScreen({navigation}) {
             </Text>
           )}
         </FormControl>
-        <Button onPress={handleSubmit(updateCredentials)}>Submit</Button>
+        <Button
+          mt="15%"
+          bg="#00bb9e"
+          _text={{fontSize: 18, color: '#fff'}}
+          onPress={handleSubmit(updateCredentials)}>
+          Submit
+        </Button>
       </VStack>
     </Box>
   );

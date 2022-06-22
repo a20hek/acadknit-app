@@ -69,7 +69,7 @@ export default function ProfileScreen({navigation}) {
         {interestData &&
           interestData.map(interest => (
             <Badge
-              bgColor="#00BB9e"
+              bgColor="#A475C0"
               // w="50px"
               rounded="sm"
               w="auto"

@@ -23,6 +23,14 @@ import {createUserInterests, deleteUserInterests} from '../graphql/mutations';
 import SelectBox from 'react-native-multi-selectbox';
 import {xorBy} from 'lodash';
 
+import {StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  selectedItem: {
+    backgroundColor: '#A475C0',
+  },
+});
+
 export default function EditInterestScreen() {
   const route = useRoute();
   const userID = route?.params?.userData.id;
@@ -97,37 +105,34 @@ export default function EditInterestScreen() {
   }, []);
 
   return (
-    <View bg="#fff" flex={1} p="16px">
+    <View bg="#fff" flex={1} px="32px">
       <Flex direction="row" mt="8px" flexWrap="wrap" mb="16px">
         {interestData &&
           interestData?.map(interest => (
             <Box
-              bgColor="#00BB9e"
-              p="4px"
+              bgColor="#A475C0"
               rounded="sm"
               w="auto"
-              m="8px"
+              mt="16px"
+              mr="16px"
               key={interest.id}>
               <Flex direction="row" alignItems="center">
                 <Text color="#fff" fontSize={10} m={2}>
                   {interest.interest.interestName}
                 </Text>
-                {/* <Pressable > */}
                 <CloseIcon
                   color="#fff"
                   size="10px"
                   m={2}
                   onPress={() => handleDelete(interest.id)}
                 />
-                {/* </Pressable> */}
               </Flex>
             </Box>
           ))}
       </Flex>
-      {/* <Text fontWeight="bold">Add New Interests</Text> */}
       <Center>
         <SelectBox
-          width="80%"
+          width="100%"
           label="Add New Interests"
           options={interests}
           selectedValues={selectedInterests}
@@ -137,12 +142,27 @@ export default function EditInterestScreen() {
           searchIconColor="#00bb9e"
           toggleIconColor="#00bb9e"
           isMulti
+          multiOptionContainerStyle={styles.selectedItem}
         />
       </Center>
       <Center>
-        <Button m="16px" w="60%" onPress={submitInterest} top="20%">
+        <Button
+          m="16px"
+          // w="60%"
+          w="80%"
+          onPress={submitInterest}
+          top="20%"
+          bg="#00bb9e"
+          _text={{fontSize: 18, color: '#fff'}}>
           Save
         </Button>
+        {/* <Button
+          mt="15%"
+          bg="#00bb9e"
+          _text={{fontSize: 18, color: '#fff'}}
+          onPress={handleSubmit(updateCredentials)}>
+          Submit
+        </Button> */}
       </Center>
     </View>
   );
