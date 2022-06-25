@@ -4,6 +4,7 @@ import {interestByInterestName} from '../graphql/queries';
 import {API, graphqlOperation} from 'aws-amplify';
 import SearchQueryContext from '../context/SearchQueryContext';
 import FriendInterestSearchCard from '../../components/FriendInterestSearchCard';
+import EmptyState from '../../components/EmptyState';
 
 export default function FriendInterestSearchScreen() {
   const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
@@ -26,10 +27,13 @@ export default function FriendInterestSearchScreen() {
 
   return (
     <Box bg="#fff" flex={1}>
-      {interestInfo &&
+      {interestInfo && interestInfo.length > 0 ? (
         interestInfo.map(user => (
           <FriendInterestSearchCard userData={user} key={user.user.id} />
-        ))}
+        ))
+      ) : (
+        <EmptyState query={searchQuery} />
+      )}
     </Box>
   );
 }

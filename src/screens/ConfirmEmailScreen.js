@@ -2,11 +2,11 @@ import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {useRoute} from '@react-navigation/native';
 import {Alert} from 'react-native';
-import {Box, Input, FormControl, VStack, Button} from 'native-base';
+import {Box, Input, FormControl, VStack, Button, Text} from 'native-base';
 import {Auth, API, graphqlOperation} from 'aws-amplify';
 import {createUser} from '../graphql/mutations';
 
-export default function ConfirmEmailScreen() {
+export default function ConfirmEmailScreen({navigation}) {
   const route = useRoute();
   const {
     control,
@@ -41,6 +41,9 @@ export default function ConfirmEmailScreen() {
             },
           }),
         );
+        navigation.navigate('Account Setup', {
+          screen: 'Step One',
+        });
       } catch (e) {
         Alert.alert(e.message);
       }
@@ -61,10 +64,8 @@ export default function ConfirmEmailScreen() {
   return (
     <Box flex={1} bg="#fff" alignItems="center">
       <VStack width="80%">
-        <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
-            Enter your Confirmation Code
-          </FormControl.Label>
+        <FormControl mt="5%" py="8%">
+          <FormControl.Label>Enter your Confirmation Code</FormControl.Label>
           <Controller
             control={control}
             rules={{
@@ -76,6 +77,7 @@ export default function ConfirmEmailScreen() {
                 onBlur={onBlur}
                 onChangeText={val => onChange(val)}
                 value={value}
+                variant="underlined"
               />
             )}
             name="code"
@@ -87,9 +89,13 @@ export default function ConfirmEmailScreen() {
           )}
         </FormControl>
         <Button
-          bg="#00B633"
-          _text={{fontSize: 18, color: '#fff'}}
-          top="40%"
+          bg="#00bb9e"
+          _text={{
+            fontSize: 16,
+            color: '#fff',
+            fontWeight: 700,
+          }}
+          mt="5%"
           onPress={handleSubmit(onConfirmPressed)}>
           Confirm Email
         </Button>

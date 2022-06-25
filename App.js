@@ -15,6 +15,7 @@ import {
   Spinner,
   Box,
   extendTheme,
+  ChevronLeftIcon,
 } from 'native-base';
 
 import Amplify from 'aws-amplify';
@@ -33,6 +34,8 @@ import ProfileScreen from './src/screens/ProfileScreen';
 
 import LoginScreen from './src/screens/LoginScreen';
 import RegistrationScreen from './src/screens/RegistrationScreen';
+import StepOneScreen from './src/screens/StepOneScreen';
+import StepTwoScreen from './src/screens/StepTwoScreen';
 import LoginOrSignupScreen from './src/screens/LoginOrSignupScreen';
 import ConfirmEmailScreen from './src/screens/ConfirmEmailScreen';
 
@@ -71,6 +74,7 @@ const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const FriendStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
+const AccountSetup = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
 function HomeStackScreen() {
@@ -172,6 +176,23 @@ function TopTabNav() {
   );
 }
 
+function AccountSetupNav() {
+  return (
+    <AccountSetup.Navigator>
+      <AccountSetup.Screen
+        name="Step One"
+        component={StepOneScreen}
+        options={{headerShown: false}}
+      />
+      <AccountSetup.Screen
+        name="Step Two"
+        component={StepTwoScreen}
+        options={{headerShown: false}}
+      />
+    </AccountSetup.Navigator>
+  );
+}
+
 function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator>
@@ -266,6 +287,13 @@ function TabNavigator() {
           component={ProfileStackScreen}
           options={{headerShown: false}}
         />
+        <Tab.Screen
+          name="Account Setup"
+          component={AccountSetupNav}
+          options={{
+            tabBarVisible: false,
+          }}
+        />
       </Tab.Navigator>
     </UserContext.Provider>
   );
@@ -313,11 +341,14 @@ function MyNavigator() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Tabs">
         {user ? (
-          <Stack.Screen
-            name="Tabs"
-            component={TabNavigator}
-            options={{headerShown: false}}
-          />
+          <Stack.Group>
+            <Stack.Screen
+              name="Tabs"
+              component={TabNavigator}
+              options={{headerShown: false}}
+            />
+            {/* <Stack.Screen name="Account Setup" component={AccountSetupNav} /> */}
+          </Stack.Group>
         ) : (
           <Stack.Group>
             <Stack.Screen
@@ -325,8 +356,19 @@ function MyNavigator() {
               component={LoginOrSignupScreen}
               options={{headerShown: false}}
             />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegistrationScreen} />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{headerShadowVisible: false}}
+            />
+            <Stack.Screen
+              name="Register"
+              component={RegistrationScreen}
+              options={{
+                headerShadowVisible: false,
+              }}
+            />
+
             <Stack.Screen name="Confirm Email" component={ConfirmEmailScreen} />
           </Stack.Group>
         )}

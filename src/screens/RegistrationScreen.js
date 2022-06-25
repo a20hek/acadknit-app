@@ -8,6 +8,7 @@ import {
   Select,
   CheckIcon,
   Heading,
+  Flex,
 } from 'native-base';
 import React from 'react';
 import {useForm, Controller} from 'react-hook-form';
@@ -44,11 +45,11 @@ export default function RegistrationScreen({navigation}) {
 
   return (
     <Box flex={1} bg="#fff" alignItems="center">
-      <Heading fontWeight="500" mt="5%">
+      <Heading fontWeight="500" mt="5%" py="5%" color="#666">
         Create Account
       </Heading>
       <VStack width="80%">
-        <FormControl>
+        <FormControl my="6px">
           <FormControl.Label mt="15px" mb="-0.5px">
             Name
           </FormControl.Label>
@@ -79,7 +80,7 @@ export default function RegistrationScreen({navigation}) {
             </Text>
           )}
         </FormControl>
-        <FormControl>
+        <FormControl my="6px">
           <FormControl.Label mt="15px" mb="-0.5px">
             Enter your college email ID
           </FormControl.Label>
@@ -112,7 +113,7 @@ export default function RegistrationScreen({navigation}) {
           )}
         </FormControl>
 
-        <FormControl>
+        <FormControl my="6px">
           <FormControl.Label mt="15px" mb="-0.5px">
             Password
           </FormControl.Label>
@@ -144,10 +145,8 @@ export default function RegistrationScreen({navigation}) {
           )}
         </FormControl>
 
-        <FormControl>
-          <FormControl.Label mt="15px" mb="-0.5px">
-            College
-          </FormControl.Label>
+        <FormControl my="6px">
+          <FormControl.Label mt="15px">College</FormControl.Label>
           <Controller
             control={control}
             rules={{
@@ -162,8 +161,12 @@ export default function RegistrationScreen({navigation}) {
                 variant="underlined"
                 size="lg"
                 _selectedItem={{
-                  bg: 'teal.600',
-                  endIcon: <CheckIcon size={5} />,
+                  // bg: 'teal.600',
+                  endIcon: (
+                    <Flex flexDir="row" alignItems="center">
+                      <CheckIcon size={5} color="#00bb9e" />,
+                    </Flex>
+                  ),
                 }}
                 mt="1">
                 <Select.Item label="Pillai College" value="Pillai College" />
@@ -177,12 +180,17 @@ export default function RegistrationScreen({navigation}) {
             </Text>
           )}
         </FormControl>
+
         <Button
-          bg="#00B633"
-          _text={{fontSize: 18, color: '#fff'}}
-          top="40%"
+          bg="#00bb9e"
+          _text={{
+            fontSize: 16,
+            color: '#fff',
+            fontWeight: 700,
+          }}
+          mt="15%"
           onPress={handleSubmit(onRegisterPressed)}>
-          Sign Up
+          Continue
         </Button>
       </VStack>
     </Box>

@@ -34,7 +34,7 @@ export default function LoginScreen() {
 
   return (
     <Box flex={1} bg="#fff" alignItems="center">
-      <Heading fontWeight="500" mt="5%">
+      <Heading fontWeight="500" mt="5%" py="8%" color="#666">
         Log In
       </Heading>
       <VStack width="80%">
@@ -94,9 +94,13 @@ export default function LoginScreen() {
           )}
         </FormControl>
         <Button
-          bg="#00B633"
-          _text={{fontSize: 18, color: '#fff'}}
-          top="40%"
+          bg="#00bb9e"
+          _text={{
+            fontSize: 16,
+            color: '#fff',
+            fontWeight: 700,
+          }}
+          mt="15%"
           onPress={handleSubmit(onSignInPressed)}>
           Log In
         </Button>

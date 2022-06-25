@@ -4,6 +4,7 @@ import {userByName} from '../graphql/queries';
 import {API, graphqlOperation} from 'aws-amplify';
 import SearchQueryContext from '../context/SearchQueryContext';
 import FriendNameSearchCard from '../../components/FriendNameSearchCard';
+import EmptyState from '../../components/EmptyState';
 
 export default function FriendNameSearchScreen() {
   const {searchQuery, setSearchQuery} = useContext(SearchQueryContext);
@@ -25,10 +26,13 @@ export default function FriendNameSearchScreen() {
 
   return (
     <Box bg="#fff" flex={1}>
-      {userInfo &&
+      {userInfo && userInfo.length > 0 ? (
         userInfo.map(user => (
           <FriendNameSearchCard userData={user} key={user.id} />
-        ))}
+        ))
+      ) : (
+        <EmptyState query={searchQuery} />
+      )}
     </Box>
   );
 }

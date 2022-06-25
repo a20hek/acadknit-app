@@ -5,6 +5,7 @@ import {clubByName} from '../graphql/queries';
 import {useRoute} from '@react-navigation/native';
 import ClubSearchCard from '../../components/ClubSearchCard';
 import SearchInput from '../../components/SearchInput';
+import EmptyState from '../../components/EmptyState';
 
 export default function ClubSearchScreen() {
   const route = useRoute();
@@ -35,7 +36,7 @@ export default function ClubSearchScreen() {
           placeholder="Search for clubs"
         />
       </Center>
-      {clubInfo &&
+      {clubInfo && clubInfo.length > 0 ? (
         clubInfo.map(item => (
           <ClubSearchCard
             clubName={item.clubName}
@@ -43,7 +44,10 @@ export default function ClubSearchScreen() {
             clubDesc={item.clubDesc}
             key={item.id}
           />
-        ))}
+        ))
+      ) : (
+        <EmptyState query={input} />
+      )}
     </Box>
   );
 }
