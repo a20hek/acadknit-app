@@ -54,7 +54,7 @@ export default function FriendNameSearchCard({userData}) {
             <Text color="#999" fontSize="12px" mt="-2px">
               {userData.degree}
             </Text>
-            <Flex direction="row" mt="2px" flexWrap="wrap">
+            <Flex direction="row" mt="2px" flexWrap="wrap" w="200px">
               {interests &&
                 interests?.map(interest => (
                   <Badge

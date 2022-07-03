@@ -1,14 +1,11 @@
 import {
-  Box,
-  Text,
   ScrollView,
-  Input,
   View,
   Center,
   Button,
   Flex,
-  HStack,
-  VStack,
+  TextArea,
+  Input,
 } from 'native-base';
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import {useRoute} from '@react-navigation/native';
@@ -30,9 +27,12 @@ export default function ClubChatScreen() {
   const [messages, setMessages] = useState([]);
   const [show, setShow] = useState('');
 
+  // const [height, setHeight] = useState(16);
+
   useEffect(() => {
     if (clubID) {
       getMessages();
+      console.log(messages);
     }
   }, []);
 
@@ -111,6 +111,7 @@ export default function ClubChatScreen() {
                 content={messagemapped.content}
                 userName={userName}
                 key={messagemapped.id}
+                timestamp={messagemapped.createdAt}
               />
             ))}
         </Flex>
@@ -118,15 +119,28 @@ export default function ClubChatScreen() {
       <View>
         <Center>
           <Input
+            // minH="unset"
+            overflow="hidden"
             mt="15px"
             placeholder="Message..."
             bottom="5px"
-            size="lg"
+            multiline={true}
+            // size=""
+            // h="24px"
             w="96%"
-            rounded="full"
+            size="lg"
+            // rounded="full"
+            // h={height}
+            // maxH="280px"
+            // height="24px"
+            // multiline
             onChangeText={text => setMessage(text)}
             value={message}
-            maxLength={1000}
+            // onContentSizeChange={e => heightChange(e)}
+            // maxLength={1000}
+            // display="flex"
+            // ref={inputRef}
+            // multiline
             InputRightElement={
               <Button
                 mr="16px"

@@ -287,13 +287,13 @@ function TabNavigator() {
           component={ProfileStackScreen}
           options={{headerShown: false}}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Account Setup"
           component={AccountSetupNav}
           options={{
             tabBarVisible: false,
           }}
-        />
+        /> */}
       </Tab.Navigator>
     </UserContext.Provider>
   );
